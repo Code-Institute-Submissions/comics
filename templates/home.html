@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+{% block content %}
+
+    {% for comic in comics %}
+        {{ comic.comic_name }}
+    {% endfor %}
+
+{% endblock %}
