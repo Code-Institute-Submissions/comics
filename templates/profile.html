@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% block content %}
+
+    <div class="row">
+        <div class="col s12">
+            <h3 class="center-align">Profile</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <form class="col s6 offset-s3 card-panel">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled value="{{ user.first_name|capitalize }} {{ user.last_name|capitalize }}" id="name" type="text">
+                    <label for="name">Full Name</label>
+                </div>
+                <div class="input-field col s12">
+                    <input disabled value="{{ user.dob }}" id="dob" type="text">
+                    <label for="dob">Date of Birth</label>
+                </div>
+                <div class="input-field col s12">
+                    <input disabled value="{{ user.email}}" id="email" type="text">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field col s12">
+                    <input disabled value="{{ user.username }}" id="username" type="text">
+                    <label for="username">Username</label>
+                </div>
+            </div>
+        </form>
+        <div class="col s12 center-align">
+            <a href="{{ url_for('edit_profile', user_id=user._id) }}" class="btn-small blue">Edit Details</a>
+            <a href="{{ url_for('change_password', user_id=user._id) }}" class="btn-small green">Change Password</a>
+        </div>
+    </div>
+
+{% endblock %}

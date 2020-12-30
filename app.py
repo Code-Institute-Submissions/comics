@@ -70,6 +70,58 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
+
+@app.route("/profile/<username>")
+def profile(username):
+    user = mongo.db.users.find_one({"username": username})
+    if session["user"]:
+        return render_template("profile.html", user=user)
+    return redirect(url_for("login"))
+
+
+@app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
+def edit_profile(user_id):
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    if request.method == "POST":
+        change = {
+            "first_name": request.form.get("first_name").capitalize(),
+            "last_name": request.form.get("last_name").capitalize(),
+            "dob": request.form.get("dob"),
+            "email": request.form.get("email"),
+            "username": session["user"],
+            "password": mongo.db.users.find_one(
+                {"_id": ObjectId(user_id)})["password"]
+        }
+        mongo.db.users.update({"_id": ObjectId(user_id)}, change)
+        flash("Profile Updated.")
+        return redirect(url_for('profile', username=session['user']))
+
+    return render_template("edit_profile.html", user=user)
+
+
+@app.route("/change_password/<user_id>", methods=["GET", "POST"])
+def change_password(user_id):
+    if request.method == "POST":
+        new_pass = request.form.get("new_password")
+        if check_password_hash(mongo.db.users.find_one(
+            {"_id": ObjectId(user_id)})["password"],
+             request.form.get("old_password")):
+            if new_pass == request.form.get("repeat_password"):
+                mongo.db.users.update_one({"_id": ObjectId(user_id)},
+                                          {"$set": {"password":
+                                                    generate_password_hash(
+                                                                   new_pass)}})
+                flash("Password Changed.")
+                return redirect(url_for('profile', username=session['user']))
+            else:
+                flash("New Password Must Match.")
+        else:
+            flash("Incorrect Password.")
+
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    return render_template("change_password.html", user=user)
+
+
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP"),

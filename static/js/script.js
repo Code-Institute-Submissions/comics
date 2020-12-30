@@ -8,4 +8,5 @@
             done: "Select"
         }
     });
+    M.updateTextFields();
   });
