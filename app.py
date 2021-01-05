@@ -122,8 +122,53 @@ def change_password(user_id):
     return render_template("change_password.html", user=user)
 
 
+@app.route("/new_entry", methods=["POST", "GET"])
+def new_entry():
+    if request.method == "POST":
+        mature = "yes" if request.form.get("is_mature") else "off"
+        new_entry = {
+            "comic_name": request.form.get("comic_name"),
+            "author": request.form.get("author_name"),
+            "genre": request.form.get("genre"),
+            "description": request.form.get("comic_description"),
+            "buy_from": request.form.get("buy_from"),
+            "comic_image": request.form.get("image_link"),
+            "brand": request.form.get("brand"),
+            "submitted_by": session["user"],
+            "is_mature": mature
+        }
+        mongo.db.books.insert_one(new_entry)
+        flash("Successfully Added New Comic!")
+        return redirect(url_for('home'))
+    return render_template("new_entry.html")
+
+
+@app.route("/edit_entry/<entry_id>", methods=["GET", "POST"])
+def edit_entry(entry_id):
+    comic = mongo.db.books.find_one({"_id": ObjectId(entry_id)})
+    if request.method == "POST":
+        mature = "yes" if request.form.get("is_mature") else "off"
+        update_entry = {
+            "comic_name": request.form.get("comic_name"),
+            "author": request.form.get("author_name"),
+            "genre": request.form.get("genre"),
+            "description": request.form.get("comic_description"),
+            "buy_from": request.form.get("buy_from"),
+            "comic_image": request.form.get("image_link"),
+            "brand": request.form.get("brand"),
+            "submitted_by": session["user"],
+            "is_mature": mature
+        }
+        mongo.db.books.update({"_id": ObjectId(entry_id)}, update_entry)
+        flash("Comic Updated!")
+        return redirect(url_for('home'))
+    return render_template("edit_entry.html", comic=comic)
+
+
+
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
-        debug=True)
+        debug=True
+        )

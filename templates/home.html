@@ -1,8 +1,30 @@
 {% extends "index.html" %}
 {% block content %}
 
+
+<div class="row">
     {% for comic in comics %}
-        {{ comic.comic_name }}
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
+                <a href="#" class="btn-floating halfway-fab waves-effect waves-light red"><i
+                        class="material-icons">+</i></a>
+            </div>
+            <div class="card-content center-align">
+                <span class="card-title">{{ comic.author }}</span>
+                <p>
+                    {{ comic.genre }}
+                </p>
+                <div class="card-action center-align">
+                    <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
+                    <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
+                    <a href="#" class="btn btn-small light-blue darken-2 ">More Info...</a>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endfor %}
+</div>
 
 {% endblock %}

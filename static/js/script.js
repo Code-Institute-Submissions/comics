@@ -9,4 +9,5 @@
         }
     });
     M.updateTextFields();
+    $('.fixed-action-btn').floatingActionButton();
   });
