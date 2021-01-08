@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -56,9 +57,15 @@ def login():
         if existing_user:
             if check_password_hash(
               existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("home", user=session["user"]))
+                if existing_user["mod"] == "yes":
+                    session["user"] = request.form.get("username").lower()
+                    session["moderator"] = "yes"
+                    flash("Welcome, {}".format(request.form.get("username")))
+                    return redirect(url_for("home", user=session["user"]))
+                else:
+                    session["user"] = request.form.get("username").lower()
+                    flash("Welcome, {}".format(request.form.get("username")))
+                    return redirect(url_for("home", user=session["user"]))
             else:
                 return redirect(url_for("login"))
     return render_template("login.html")
@@ -164,6 +171,11 @@ def edit_entry(entry_id):
         return redirect(url_for('home'))
     return render_template("edit_entry.html", comic=comic)
 
+
+@app.route("/<entry_id>/<comic_name>")
+def more_info(entry_id, comic_name):
+    comic = mongo.db.books.find_one({"_id": ObjectId(entry_id)})
+    return render_template("comic.html", comic=comic)
 
 
 if __name__ == "__main__":

@@ -1,4 +1,9 @@
 {% extends "index.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
 {% block content %}
 
     <div class="row">
@@ -21,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" class="datepicker" id="dob" name="dob" required>
+                    <input type="text" class="datepicker validate" id="dob" name="dob" required readonly>
                     <label for="dob">Date of Birth</label>
                 </div>
             </div>            
@@ -33,8 +38,9 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input type="text" id="username" name="username" class="validate" pattern="^[a-zA-Z0-9._%+-]{5,15}$" required>
+                    <input type="text" id="username" name="username" class="validate" pattern="^[a-zA-Z0-9._%+-@]{5,15}$" required>
                     <label for="username">Username</label>
+                    <span class="helper-text" data-error="Max Length: 15" data-success="Acceptable"></span>
                 </div>
             </div>
             <div class="row">
