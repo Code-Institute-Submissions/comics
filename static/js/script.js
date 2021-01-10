@@ -10,4 +10,6 @@
     });
     M.updateTextFields();
     $('.fixed-action-btn').floatingActionButton();
+    $('.modal').modal();
+    $('.parallax').parallax();
   });

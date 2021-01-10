@@ -75,6 +75,7 @@ def login():
 def logout():
     flash("You've been logged out.")
     session.pop("user")
+    session.pop("moderator")
     return redirect(url_for("login"))
 
 
@@ -172,10 +173,22 @@ def edit_entry(entry_id):
     return render_template("edit_entry.html", comic=comic)
 
 
+@app.route("/delete_comic/<entry_id>")
+def delete_comic(entry_id):
+    mongo.db.books.remove({"_id": ObjectId(entry_id)})
+    flash("Comic Deleted")
+    return redirect(url_for("home"))
+
+
 @app.route("/<entry_id>/<comic_name>")
 def more_info(entry_id, comic_name):
     comic = mongo.db.books.find_one({"_id": ObjectId(entry_id)})
     return render_template("comic.html", comic=comic)
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 
 if __name__ == "__main__":

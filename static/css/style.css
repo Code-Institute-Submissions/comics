@@ -5,3 +5,11 @@
 .btn-small {
     margin-top: 4px;
 }
+
+.bottom-para {
+    transform: translate3d(-50%, 303.788px, 0px)!important;
+}
+
+.parallax-container {
+    height: 517px;
+}

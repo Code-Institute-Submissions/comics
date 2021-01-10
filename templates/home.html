@@ -22,15 +22,18 @@ Home
                 </p>
                 <div class="card-action center-align">
                     {% if session.user == comic.submitted_by or session.moderator == "yes" %}
+                        <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn-small">Delete</a>
                         <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
                     {% endif %}
                     <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
-                    <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}" class="btn btn-small light-blue darken-2 ">More Info...</a>
+                    <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}"
+                        class="btn btn-small light-blue darken-2 ">More Info...</a>
                 </div>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+
 
 {% endblock %}
