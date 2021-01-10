@@ -13,3 +13,11 @@
 .parallax-container {
     height: 517px;
 }
+
+.comic-image {
+    width: 100%;
+}
+
+.comic-page {
+    padding: 30px;
+}

@@ -7,8 +7,31 @@
 {% block content %}
 
 
-<div class="row">
-{{ comic }}
-</div>
+<div class="row comic-page">
+    <div class="col m5 s12">
+        <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}" class="comic-image">
+    </div>
+    <div class="col m7 s12 center-align">
+        <h3><strong>
+                {{ comic.comic_name }}
+            </strong></h3>
+        <p>
+            Created by:<br> {{ comic.author }}
+            <br>
+            Genre: {{ comic.genre }}
+            <br>
+        </p>
+        <h5>About</h5>
+        <p>{{ comic.description }}</p>
+        <br>
+        <p>Submitted by: {{ comic.submitted_by }}</p>
+        <div class="col s12">
+            {% if session.user == comic.submitted_by or session.moderator == "yes" %}
+                <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn-small">Delete</a>
+                <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
+            {% endif %}
+                <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
+        </div>
+    </div>
 
-{% endblock %}
+    {% endblock %}
