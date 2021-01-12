@@ -1,7 +1,7 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for, jsonify)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -19,15 +19,30 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+@app.route("/add_favourite", methods=["POST"])
+def add_favourite():
+    response = request.get_json()
+    comic_id = response["comic_id"]
+    favourite = {
+        "comic_id": comic_id,
+        "username": session["user"]
+    }
+    mongo.db.favourites.insert_one(favourite)
+    return jsonify(response)
+
+
 @app.route("/")
 @app.route("/home")
 def home():
     comics = list(mongo.db.books.find())
+    favourites = list(mongo.db.favourites.find())
     if session.get("user") is not None:
-        return render_template("home.html", comics=comics)
+        return render_template("home.html",
+                               comics=comics, favourites=favourites)
     else:
         session["mature"] = "yes"
-        return render_template("home.html", comics=comics)
+        return render_template("home.html",
+                               comics=comics, favourites=favourites)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -38,7 +53,6 @@ def register():
         if existing_user:
             flash("Username has been taken.")
             return redirect(url_for("register"))
-
         new_user = {
             "first_name": request.form.get("first_name").capitalize(),
             "last_name": request.form.get("last_name").capitalize(),
@@ -51,7 +65,6 @@ def register():
         mongo.db.users.insert_one(new_user)
         flash("Registration Complete!")
         return redirect(url_for("home"))
-
     return render_template("register.html")
 
 

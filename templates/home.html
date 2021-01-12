@@ -8,57 +8,65 @@ Home
 
 <div class="row">
     {% for comic in comics %}
-        {% if session.mature == "no" %}
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
-                        <a href="#" class="btn-floating halfway-fab waves-effect waves-light red"><i
-                                class="material-icons">+</i></a>
-                    </div>
-                    <div class="card-content center-align">
-                        <span class="card-title">{{ comic.author }}</span>
-                        <p class="genre">
-                            {{ comic.genre }}
-                        </p>
-                        <div class="card-action center-align">
-                            {% if session.user == comic.submitted_by or session.moderator == "yes" %}
-                                <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn-small">Delete</a>
-                                <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
-                            {% endif %}
-                            <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
-                            <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}"
-                                class="btn btn-small light-blue darken-2 ">More Info...</a>
-                        </div>
-                    </div>
+    {% if session.mature == "no" %}
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
+                <button type="submit" onclick="addFavourite(this.id)" id="{{ comic._id }}" class="favourite btn-floating halfway-fab blue">
+                    <i class="heart far fa-heart"></i>
+                </button>
+                <button type="submit" class="unfavourite btn-floating halfway-fab blue hide" name="{{ comic._id }}">
+                    <i class="heart fas fa-heart"></i>
+                </button>
+            </div>
+            <div class="card-content center-align">
+                <span class="card-title">{{ comic.author }}</span>
+                <p class="genre">
+                    {{ comic.genre }}
+                </p>
+                <div class="card-action center-align">
+                    {% if session.user == comic.submitted_by or session.moderator == "yes" %}
+                        <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn-small">Delete</a>
+                        <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
+                    {% endif %}
+                        <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
+                        <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}"
+                            class="btn btn-small light-blue darken-2 ">More Info...</a>
                 </div>
             </div>
-        {% elif session.mature == "yes" and comic.is_mature == "no" %}
-            <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
-                            <a href="#" class="btn-floating halfway-fab waves-effect waves-light red"><i
-                                    class="material-icons">+</i></a>
-                        </div>
-                        <div class="card-content center-align">
-                            <span class="card-title">{{ comic.author }}</span>
-                            <p class="genre">
-                                {{ comic.genre }}
-                            </p>
-                            <div class="card-action center-align">
-                                {% if session.user == comic.submitted_by or session.moderator == "yes" %}
-                                    <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn-small">Delete</a>
-                                    <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
-                                {% endif %}
-                                <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
-                                <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}"
-                                    class="btn btn-small light-blue darken-2 ">More Info...</a>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    {% elif session.mature == "yes" and comic.is_mature == "no" %}
+    <div class="col s12 m4">
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
+                <a href="#" class="favourite btn-floating halfway-fab blue">
+                    <i class="heart far fa-heart"></i>
+                </a>
+                <a href="#" class="unfavourite btn-floating halfway-fab blue hide">
+                    <i class="heart fas fa-heart"></i>
+                </a>
+            </div>
+            <div class="card-content center-align">
+                <span class="card-title">{{ comic.author }}</span>
+                <p class="genre">
+                    {{ comic.genre }}
+                </p>
+                <div class="card-action center-align">
+                    {% if session.user == comic.submitted_by or session.moderator == "yes" %}
+                        <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn-small">Delete</a>
+                        <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
+                    {% endif %}
+                        <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
+                        <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}"
+                            class="btn btn-small light-blue darken-2 ">More Info...</a>
                 </div>
-        {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
     {% endfor %}
 </div>
 

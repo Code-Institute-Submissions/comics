@@ -29,3 +29,12 @@
 .comic-page {
     padding: 30px;
 }
+
+.heart {
+  font-size: 25px;
+	color:red !important;
+}
+
+.hide {
+    display: none;
+}

@@ -1,4 +1,4 @@
-  $(document).ready(function(){
+$(document).ready(function () {
     $('.sidenav').sidenav();
     $(".datepicker").datepicker({
         format: "dd/mm/yyyy",
@@ -12,4 +12,17 @@
     $('.fixed-action-btn').floatingActionButton();
     $('.modal').modal();
     $('.parallax').parallax();
-  });
+});
+
+function addFavourite(comicId) {
+        $.ajax({
+			data : JSON.stringify({"comic_id" : comicId}),
+            contentType : "application/json",
+			type : 'POST',
+			url : '/add_favourite'
+        })
+        .done(function() {
+            $(this).addClass("hide");
+            $(`button.unfavourite[name="${comicId}"]`).removeClass("hide")
+        })
+}
