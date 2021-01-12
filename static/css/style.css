@@ -1,5 +1,13 @@
 .card-image img {
-    max-height: 542px;
+    height: 500px;
+}
+
+.card-title {
+    font-size: 15px !important;
+}
+
+.genre {
+    font-size: 12px;
 }
 
 .btn-small {

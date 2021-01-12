@@ -5,7 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-import datetime
+from datetime import datetime, date
 if os.path.exists("env.py"):
     import env
 
@@ -23,7 +23,11 @@ mongo = PyMongo(app)
 @app.route("/home")
 def home():
     comics = list(mongo.db.books.find())
-    return render_template("home.html", comics=comics)
+    if session.get("user") is not None:
+        return render_template("home.html", comics=comics)
+    else:
+        session["mature"] = "yes"
+        return render_template("home.html", comics=comics)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -41,7 +45,9 @@ def register():
             "dob": request.form.get("dob"),
             "email": request.form.get("email"),
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))}
+            "password": generate_password_hash(request.form.get("password")),
+            "mod": "no"
+            }
         mongo.db.users.insert_one(new_user)
         flash("Registration Complete!")
         return redirect(url_for("home"))
@@ -54,16 +60,20 @@ def login():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
+        dob = datetime.strptime(existing_user["dob"], "%d/%m/%Y")
+        today = date.today()
+        age = (today.year - dob.year - ((
+            today.month, today.day) < (dob.month, dob.day)))
         if existing_user:
             if check_password_hash(
               existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                session["mature"] = "yes" if age < 16 else "no"
                 if existing_user["mod"] == "yes":
-                    session["user"] = request.form.get("username").lower()
                     session["moderator"] = "yes"
                     flash("Welcome, {}".format(request.form.get("username")))
                     return redirect(url_for("home", user=session["user"]))
                 else:
-                    session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(request.form.get("username")))
                     return redirect(url_for("home", user=session["user"]))
             else:
@@ -75,7 +85,9 @@ def login():
 def logout():
     flash("You've been logged out.")
     session.pop("user")
-    session.pop("moderator")
+    if session.get("moderator") is not None:
+        session.pop("moderator")
+    session["mature"] = "yes"
     return redirect(url_for("login"))
 
 
@@ -133,7 +145,7 @@ def change_password(user_id):
 @app.route("/new_entry", methods=["POST", "GET"])
 def new_entry():
     if request.method == "POST":
-        mature = "yes" if request.form.get("is_mature") else "off"
+        mature = "yes" if request.form.get("is_mature") else "no"
         new_entry = {
             "comic_name": request.form.get("comic_name"),
             "author": request.form.get("author_name"),
@@ -155,7 +167,7 @@ def new_entry():
 def edit_entry(entry_id):
     comic = mongo.db.books.find_one({"_id": ObjectId(entry_id)})
     if request.method == "POST":
-        mature = "yes" if request.form.get("is_mature") else "off"
+        mature = "yes" if request.form.get("is_mature") else "no"
         update_entry = {
             "comic_name": request.form.get("comic_name"),
             "author": request.form.get("author_name"),
