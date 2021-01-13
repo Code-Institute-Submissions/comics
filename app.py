@@ -15,34 +15,23 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 mongo = PyMongo(app)
-
-
-@app.route("/add_favourite", methods=["POST"])
-def add_favourite():
-    response = request.get_json()
-    comic_id = response["comic_id"]
-    favourite = {
-        "comic_id": comic_id,
-        "username": session["user"]
-    }
-    mongo.db.favourites.insert_one(favourite)
-    return jsonify(response)
 
 
 @app.route("/")
 @app.route("/home")
 def home():
     comics = list(mongo.db.books.find())
-    favourites = list(mongo.db.favourites.find())
     if session.get("user") is not None:
+        favourites = list(mongo.db.favourites.find(
+            {"username": session["user"]}))
         return render_template("home.html",
                                comics=comics, favourites=favourites)
     else:
         session["mature"] = "yes"
-        return render_template("home.html",
-                               comics=comics, favourites=favourites)
+        return render_template("home.html", comics=comics)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -61,7 +50,7 @@ def register():
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
             "mod": "no"
-            }
+        }
         mongo.db.users.insert_one(new_user)
         flash("Registration Complete!")
         return redirect(url_for("home"))
@@ -73,13 +62,14 @@ def login():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        dob = datetime.strptime(existing_user["dob"], "%d/%m/%Y")
-        today = date.today()
-        age = (today.year - dob.year - ((
-            today.month, today.day) < (dob.month, dob.day)))
         if existing_user:
+            dob = datetime.strptime(existing_user["dob"], "%d/%m/%Y")
+            today = date.today()
+            age = (today.year - dob.year - ((
+                today.month, today.day) < (
+                dob.month, dob.day)))
             if check_password_hash(
-              existing_user["password"], request.form.get("password")):
+                    existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 session["mature"] = "yes" if age < 16 else "no"
                 if existing_user["mod"] == "yes":
@@ -89,8 +79,9 @@ def login():
                 else:
                     flash("Welcome, {}".format(request.form.get("username")))
                     return redirect(url_for("home", user=session["user"]))
-            else:
-                return redirect(url_for("login"))
+        else:
+            flash("Incorrect Username/Password")
+            return redirect(url_for("login"))
     return render_template("login.html")
 
 
@@ -102,6 +93,30 @@ def logout():
         session.pop("moderator")
     session["mature"] = "yes"
     return redirect(url_for("login"))
+
+
+@app.route("/add_favourite", methods=["POST"])
+def add_favourite():
+    response = request.get_json()
+    comic_id = response["comic_id"]
+    favourite = {
+        "comic_id": comic_id,
+        "username": session["user"]
+    }
+    mongo.db.favourites.insert_one(favourite)
+    return jsonify(response)
+
+
+@app.route("/delete_favourite", methods=["POST"])
+def delete_favourite():
+    response = request.get_json()
+    comic_id = response["comic_id"]
+    unfavourite = {
+        "comic_id": comic_id,
+        "username": session["user"]
+    }
+    mongo.db.favourites.remove(unfavourite)
+    return jsonify(response)
 
 
 @app.route("/profile/<username>")
@@ -137,13 +152,13 @@ def change_password(user_id):
     if request.method == "POST":
         new_pass = request.form.get("new_password")
         if check_password_hash(mongo.db.users.find_one(
-            {"_id": ObjectId(user_id)})["password"],
-             request.form.get("old_password")):
+                {"_id": ObjectId(user_id)})["password"],
+                request.form.get("old_password")):
             if new_pass == request.form.get("repeat_password"):
                 mongo.db.users.update_one({"_id": ObjectId(user_id)},
                                           {"$set": {"password":
                                                     generate_password_hash(
-                                                                   new_pass)}})
+                                                        new_pass)}})
                 flash("Password Changed.")
                 return redirect(url_for('profile', username=session['user']))
             else:
@@ -221,9 +236,14 @@ def contact():
     return render_template("contact.html")
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
         debug=True
-        )
+    )
