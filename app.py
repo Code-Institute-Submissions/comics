@@ -34,6 +34,15 @@ def home():
         return render_template("home.html", comics=comics)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    comics = list(mongo.db.books.find({"$text": {"$search": query}}))
+    favourites = list(mongo.db.favourites.find(
+            {"username": session["user"]}))
+    return render_template("home.html", comics=comics, favourites=favourites)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -143,7 +152,6 @@ def edit_profile(user_id):
         mongo.db.users.update({"_id": ObjectId(user_id)}, change)
         flash("Profile Updated.")
         return redirect(url_for('profile', username=session['user']))
-
     return render_template("edit_profile.html", user=user)
 
 
@@ -185,6 +193,11 @@ def new_entry():
             "submitted_by": session["user"],
             "is_mature": mature
         }
+        check = list(mongo.db.books.find(
+            {"comic_name": new_entry["comic_name"]}))
+        if check != []:
+            flash("Comic Already Exists")
+            return redirect(url_for('new_entry'))
         mongo.db.books.insert_one(new_entry)
         flash("Successfully Added New Comic!")
         return redirect(url_for('home'))
