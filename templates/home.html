@@ -5,22 +5,22 @@ Home
 
 {% block content %}
 
-    <div class="row card-panel grey lighten-5">
+    <div class="row search-bar card grey lighten-5">
         <form action="{{ url_for('search') }}" method="POST" class="col s12">
             <div class="row valign-wrapper center-align">
-                <div class="input-field col s12 m8">
-                    <i class="fas fa-search prefix light-blue-text text-darken-4"></i>
+                <div class="input-field col s12 m8 no-wrap">
                     <input type="text" name="query" id="query" minlength="3" class="validate" required>
-                    <label for="query">Search Tasks</label>
+                    <label for="query">Search Comics</label>
                 </div>
                 <div class="col s12 m4">
-                    <a href="{{ url_for('home') }}" class="red btn">Reset</a>
-                    <button type="submit" class="light-blue darken-1 btn text-shadow">
-                        <i class="fas fa-search left"></i> Search
+                    <button type="submit" class="light-blue darken-1 btn submit">
+                        <i class="fas fa-search left"></i>
                     </button>
+                    <a href="{{ url_for('home') }}" class="red btn cancel">
+                        <i class="fas fa-undo"></i></a>
                 </div>
             </div>
-        </form> 
+        </form>
     </div>
 
 {% if comics| length > 0 %}
@@ -38,7 +38,7 @@ Home
                                         <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}" class="favourite btn-floating halfway-fab blue hide">
                                             <i class="heart far fa-heart"></i>
                                         </button>
-                                        <button type="submit" onclick="deleteFavourite(this.name)" name="{{ comic.comic_name }}" class="unfavourite btn-floating halfway-fab blue">
+                                        <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}" class="unfavourite btn-floating halfway-fab blue">
                                             <i class="heart fas fa-heart"></i>
                                         </button>
                                         {% break %}
@@ -47,7 +47,7 @@ Home
                                             class="favourite btn-floating halfway-fab blue">
                                             <i class="heart far fa-heart"></i>
                                         </button>
-                                        <button type="submit" onclick="deleteFavourite(this.name)" name="{{ comic.comic_name }}"
+                                        <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}"
                                             class="unfavourite btn-floating halfway-fab blue hide">
                                             <i class="heart fas fa-heart"></i>
                                         </button>
@@ -59,7 +59,7 @@ Home
                                 <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}" class="favourite btn-floating halfway-fab blue">
                                     <i class="heart far fa-heart"></i>
                                 </button>
-                            <button type="submit" onclick="deleteFavourite(this.name)" name="{{ comic.comic_name }}" class="unfavourite btn-floating halfway-fab blue hide">
+                            <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}" class="unfavourite btn-floating halfway-fab blue hide">
                                     <i class="heart fas fa-heart"></i>
                                 </button>
                             {% endif %}
@@ -67,7 +67,7 @@ Home
                     </div>
                     <div class="card-content center-align">
                         <span class="card-title">{{ comic.author }}</span>
-                        <p class="genre">
+                        <p class="genre no-wrap">
                             {{ comic.genre }}
                         </p>
                         <div class="card-action center-align">
@@ -94,7 +94,7 @@ Home
                                         <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}" class="favourite btn-floating halfway-fab blue hide">
                                             <i class="heart far fa-heart"></i>
                                         </button>
-                                        <button type="submit" onclick="deleteFavourite(this.name)" name="{{ comic.comic_name }}" class="unfavourite btn-floating halfway-fab blue">
+                                        <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}" class="unfavourite btn-floating halfway-fab blue">
                                             <i class="heart fas fa-heart"></i>
                                         </button>
                                         {% break %}
@@ -103,7 +103,7 @@ Home
                                             class="favourite btn-floating halfway-fab blue">
                                             <i class="heart far fa-heart"></i>
                                         </button>
-                                        <button type="submit" onclick="deleteFavourite(this.name)" name="{{ comic.comic_name }}"
+                                        <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}"
                                             class="unfavourite btn-floating halfway-fab blue hide">
                                             <i class="heart fas fa-heart"></i>
                                         </button>
@@ -115,7 +115,7 @@ Home
                                 <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}" class="favourite btn-floating halfway-fab blue">
                                     <i class="heart far fa-heart"></i>
                                 </button>
-                            <button type="submit" onclick="deleteFavourite(this.name)" name="{{ comic.comic_name }}" class="unfavourite btn-floating halfway-fab blue hide">
+                            <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}" class="unfavourite btn-floating halfway-fab blue hide">
                                     <i class="heart fas fa-heart"></i>
                                 </button>
                             {% endif %}
@@ -123,7 +123,7 @@ Home
                     </div>
                     <div class="card-content center-align">
                         <span class="card-title">{{ comic.author }}</span>
-                        <p class="genre">
+                        <p class="genre no-wrap">
                             {{ comic.genre }}
                         </p>
                         <div class="card-action center-align">

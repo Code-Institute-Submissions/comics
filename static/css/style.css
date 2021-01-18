@@ -1,3 +1,4 @@
+
 .card-image img {
     height: 500px;
 }
@@ -10,7 +11,7 @@
     font-size: 12px;
 }
 
-.btn-small {
+.btn {
     margin-top: 4px;
 }
 
@@ -37,4 +38,66 @@
 
 .hide {
     display: none;
+}
+
+#logo {
+    width: 64px;
+}
+
+.search-bar {
+    width: 47%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.no-wrap {        
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.cancel, .submit {
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+}
+
+.fa-undo {
+    top: 7px;
+    position: relative;
+}
+
+.site-logo {
+    position: relative;
+    top: -17px;
+    font-weight: 600;
+}
+
+.fa-bars {
+    color: black;
+}
+
+.sidenav li {
+    border-bottom: 1px solid black;
+}
+
+@media only screen and (max-width: 600px) {
+    #logo {
+        width: 54px;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: auto;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .site-logo {
+        font-size: 25px;
+    }
+
+    .btn.green {
+        font-size: 8px;
+    }
 }

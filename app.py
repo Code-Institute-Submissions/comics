@@ -15,6 +15,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+# allows for use of break and continue in jinja template.
 app.jinja_env.add_extension('jinja2.ext.loopcontrols')
 
 mongo = PyMongo(app)
@@ -24,22 +25,47 @@ mongo = PyMongo(app)
 @app.route("/home")
 def home():
     comics = list(mongo.db.books.find())
+    # Only find favourites if session user exists.
     if session.get("user") is not None:
         favourites = list(mongo.db.favourites.find(
             {"username": session["user"]}))
         return render_template("home.html",
                                comics=comics, favourites=favourites)
     else:
+        # If no user logged in set mature filter.
         session["mature"] = "yes"
         return render_template("home.html", comics=comics)
 
 
+###
+# Build search function.
+# mongodb index set to search
+# comic_name, description and author
+###
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     comics = list(mongo.db.books.find({"$text": {"$search": query}}))
-    favourites = list(mongo.db.favourites.find(
+    if session.get("user") is not None:
+        favourites = list(mongo.db.favourites.find(
             {"username": session["user"]}))
+    else:
+        favourites = []
+    return render_template("home.html", comics=comics, favourites=favourites)
+
+
+@app.route("/favourites", methods=["GET", "POST"])
+def favourites():
+    # Search favourites of logged in user
+    favourites = list(mongo.db.favourites.find(
+        {"username": session["user"]}))
+    comics = []
+    # Iterates through favourites list to fill comics list
+    for favourite in favourites:
+        comic = list(mongo.db.books.find(
+            {"comic_name": {"$eq":
+                            favourite["comic_id"]}}))
+        comics += comic
     return render_template("home.html", comics=comics, favourites=favourites)
 
 
@@ -88,6 +114,9 @@ def login():
                 else:
                     flash("Welcome, {}".format(request.form.get("username")))
                     return redirect(url_for("home", user=session["user"]))
+            else:
+                flash("Incorrect Username/Password")
+                return redirect(url_for("login"))
         else:
             flash("Incorrect Username/Password")
             return redirect(url_for("login"))
@@ -183,7 +212,8 @@ def new_entry():
     if request.method == "POST":
         mature = "yes" if request.form.get("is_mature") else "no"
         new_entry = {
-            "comic_name": request.form.get("comic_name"),
+            "comic_name": " ".join(request.form.get(
+                "comic_name").title().split()),
             "author": request.form.get("author_name"),
             "genre": request.form.get("genre"),
             "description": request.form.get("comic_description"),
@@ -210,7 +240,8 @@ def edit_entry(entry_id):
     if request.method == "POST":
         mature = "yes" if request.form.get("is_mature") else "no"
         update_entry = {
-            "comic_name": request.form.get("comic_name"),
+            "comic_name": " ".join(request.form.get(
+                "comic_name").title().split()),
             "author": request.form.get("author_name"),
             "genre": request.form.get("genre"),
             "description": request.form.get("comic_description"),

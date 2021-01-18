@@ -14,27 +14,27 @@ $(document).ready(function () {
 });
 
 function addFavourite(comicId) {
-        $.ajax({
-			data : JSON.stringify({"comic_id" : comicId}),
-            contentType : "application/json",
-			type : 'POST',
-			url : '/add_favourite'
-        })
-        .done(function() {
+    $.ajax({
+        data: JSON.stringify({ "comic_id": comicId }),
+        contentType: "application/json",
+        type: 'POST',
+        url: '/add_favourite'
+    })
+        .done(function () {
             $(`button.favourite[id="${comicId}"]`).addClass("hide");
-            $(`button.unfavourite[name="${comicId}"]`).removeClass("hide");
+            $(`button.unfavourite[id="${comicId}"]`).removeClass("hide");
         })
 }
 
 function deleteFavourite(comicId) {
-            $.ajax({
-			data : JSON.stringify({"comic_id" : comicId}),
-            contentType : "application/json",
-			type : 'POST',
-			url : '/delete_favourite'
-        })
-        .done(function() {
-            $(`button.unfavourite[name="${comicId}"]`).addClass("hide");
+    $.ajax({
+        data: JSON.stringify({ "comic_id": comicId }),
+        contentType: "application/json",
+        type: 'POST',
+        url: '/delete_favourite'
+    })
+        .done(function () {
+            $(`button.unfavourite[id="${comicId}"]`).addClass("hide");
             $(`button.favourite[id="${comicId}"]`).removeClass("hide");
         })
 }
