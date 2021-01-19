@@ -1,64 +1,15 @@
-
+/*Logo, images and icons*/
 .card-image img {
     height: 500px;
-}
-
-.card-title {
-    font-size: 15px !important;
-}
-
-.genre {
-    font-size: 12px;
-}
-
-.btn {
-    margin-top: 4px;
-}
-
-.bottom-para {
-    transform: translate3d(-50%, 303.788px, 0px)!important;
-}
-
-.parallax-container {
-    height: 517px;
 }
 
 .comic-image {
     width: 100%;
 }
 
-.comic-page {
-    padding: 30px;
-}
-
 .heart {
   font-size: 25px;
 	color:red !important;
-}
-
-.hide {
-    display: none;
-}
-
-#logo {
-    width: 64px;
-}
-
-.search-bar {
-    width: 47%;
-    margin: auto;
-    margin-top: 10px;
-}
-
-.no-wrap {        
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.cancel, .submit {
-    border-radius: 25px;
-    height: 50px;
-    width: 50px;
 }
 
 .fa-undo {
@@ -72,14 +23,67 @@
     font-weight: 600;
 }
 
+#logo {
+    width: 64px;
+}
+
 .fa-bars {
     color: black;
 }
+/*Buttons*/
+.btn {
+    margin-top: 4px;
+}
 
+.cancel, .submit {
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+}
+
+/*Card*/
+.card-title {
+    font-size: 15px !important;
+}
+
+.genre {
+    font-size: 12px;
+}
+/*Banners*/
+.bottom-para {
+    transform: translate3d(-50%, 105.788px, 0px)!important;
+}
+
+.top-para {
+    transform: translate3d(-50%, 220.149px, 11px) !important;
+}
+
+/*Search Bar*/
+.search-bar {
+    width: 47%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+/*Navbar and Sidenav*/
 .sidenav li {
     border-bottom: 1px solid black;
 }
 
+.comic-page {
+    padding: 30px;
+}
+
+.hide {
+    display: none;
+}
+
+.no-wrap {        
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*Media Queries*/
 @media only screen and (max-width: 600px) {
     #logo {
         width: 54px;
@@ -94,7 +98,7 @@
 
 @media only screen and (max-width: 600px) {
     .site-logo {
-        font-size: 25px;
+        font-size: 22px;
     }
 
     .btn.green {
