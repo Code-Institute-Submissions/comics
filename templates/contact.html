@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% block styles %}
+<!--Script for emailjs-->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
 <script type="text/javascript">
     (function () {
@@ -19,19 +20,27 @@ Contact Us
     </div>
 </div>
 
-
+<!--Email Form-->
 <div class="row">
     <form class="col s12" onsubmit="return sendMail(this);" id="contact">
         <div class="row">
+            <!--Name-->
             <div class="input-field col s6">
                 <input id="name" name="name" type="text">
                 <label for="name">Name</label>
             </div>
+            <!--Email Address-->
             <div class="input-field col s6">
                 <input id="email" name="email" type="email">
                 <label for="email">Email Address</label>
             </div>
+            <!--Subject-->
+            <div class="input-field col s12">
+                <input id="subject" name="subject" type="text">
+                <label for="subject">Subject</label>
+            </div>
         </div>
+        <!--Message-->
         <div class="row">
             <div class="input-field col s12">
                 <textarea id="message" name="message" class="materialize-textarea"></textarea>
@@ -48,5 +57,6 @@ Contact Us
 {% endblock %}
 
 {% block scripts %}
+<!--Additional Script for emailjs-->
 <script src="{{ url_for('static', filename='js/email.js') }}"></script>
 {% endblock %}

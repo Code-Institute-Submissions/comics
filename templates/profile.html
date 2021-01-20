@@ -13,8 +13,9 @@ Profile
         </div>
     </div>
 
+    <!--Profile Details-->
     <div class="row">
-        <form class="col s6 offset-s3 card-panel">
+        <div class="col s10 m6 offset-m3 offset-s1 card-panel">
             <div class="row">
                 <div class="input-field col s12">
                     <input disabled value="{{ user.first_name|capitalize }} {{ user.last_name|capitalize }}" id="name" type="text">
@@ -33,13 +34,33 @@ Profile
                     <label for="username">Username</label>
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12 center-align">
-                    <a href="{{ url_for('edit_profile', user_id=user._id) }}" class="btn btn-small blue">Edit Details</a>
-                    <a href="{{ url_for('change_password', user_id=user._id) }}" class="btn btn-small green">Change Password</a>
+                <!--Allows moderators to grant moderator status to others-->
+                {% if session.moderator == "yes" %}
+                    <form class="center-align" method="POST" action="{{ url_for('moderator', username=user.username) }}">
+                        <p>
+                            <label>
+                                
+                                {% if user.mod == "yes" %}
+                                    <input type="checkbox" id="is_mod" name="is_mod" checked/>
+                                {% else %}
+                                    <input type="checkbox" id="is_mod" name="is_mod"/>
+                                {% endif %}
+                                <span>Mod Status</span>
+                            </label>
+                            <button type="submit" class="btn btn-small purple">Confirm Mod</button>
+                        </p>
+                    </form>
+                {% endif %}
+            <!--Prevent moderators changing other users details-->
+            {% if user.username == session.user %}
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <a href="{{ url_for('edit_profile', user_id=user._id) }}" class="btn btn-small blue">Edit Details</a>
+                        <a href="{{ url_for('change_password', user_id=user._id) }}" class="btn btn-small green">Change Password</a>
+                    </div>
                 </div>
-            </div>
-        </form>
+            {% endif %}
+        </div>
 
     </div>
 

@@ -12,31 +12,37 @@ New Comic
         </div>
     </div>
 
+    <!--New Comic Form-->
     <div class="row card-panel">
         <form class="col s12" method="POST" action="{{ url_for('new_entry') }}">
             <div class="row">
                 <div class="input-field col s6">
+                    <!--Comic Name-->
                     <input id="comic_name" name="comic_name" type="text" class="validate" required>
                     <label for="comic_name">Comic Name</label>
                 </div>
                 <div class="input-field col s6">
+                    <!--Author-->
                     <input id="author_name" name="author_name" type="text" class="validate" required>
                     <label for="author_name">Author</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6">
+                    <!--Brand-->
                     <input id="brand" type="text" name="brand" class="validate" required>
                     <label for="brand">Brand</label>
                     <span class="helper-text">Marvel, DC etc.</span>
                 </div>
                 <div class="input-field col s6">
+                    <!--Genre-->
                     <input id="genre" type="text" name="genre" class="validate" required>
                     <label for="genre">Genre</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
+                    <!--Comic Image URL-->
                     <input type="url" class="validate" id="image_link" name="image_link" pattern="https?://.+" required>
                     <label for="image_link">Comic Image URL</label>
                     <span class="helper-text">Must start with http:// or https://</span>
@@ -44,12 +50,14 @@ New Comic
             </div>            
             <div class="row">
                 <div class="input-field col s12">
+                    <!--Comic Description-->
                     <textarea id="comic_description" name="comic_description" class="materialize-textarea"></textarea>
                     <label for="comic_description">Comic Synopsis</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
+                    <!--Store Link to buy comic-->
                     <input type="url" class="validate" id="buy_from" name="buy_from" pattern="https?://.+" required>
                     <label for="buy_from">Store Link</label>
                     <span class="helper-text">Must start with http:// or https://</span>
@@ -57,6 +65,7 @@ New Comic
             </div>
             <p>
                 <label>
+                    <!--Check for mature comics-->
                     <input type="checkbox" id="is_mature" name="is_mature"/>
                     <span>Mature</span>
                 </label>

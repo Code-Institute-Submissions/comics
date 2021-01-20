@@ -214,6 +214,24 @@ def edit_profile(user_id):
     return render_template("edit_profile.html", user=user)
 
 
+# Allows other moderators to grant moderator status.
+@app.route("/moderator/<username>", methods=["POST"])
+def moderator(username):
+    # Stops moderators from affecting creators mod status.
+    if username == "bob134552":
+        flash("Cannot change creators status.")
+        return redirect(url_for('profile', username=username))
+    else:
+        mod = "yes" if request.form.get("is_mod") else "no"
+        mongo.db.users.update_one({"username": username}, {
+                                  "$set": {"mod": mod}})
+        if mod == "yes":
+            flash("{} is now a moderator.".format(username))
+        else:
+            flash("{} is no longer a moderator.".format(username))
+        return redirect(url_for('profile', username=username))
+
+
 @app.route("/change_password/<user_id>", methods=["GET", "POST"])
 def change_password(user_id):
     if request.method == "POST":

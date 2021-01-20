@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // Materialize functions
     $('.sidenav').sidenav();
     $(".datepicker").datepicker({
         format: "dd/mm/yyyy",
@@ -13,6 +14,7 @@ $(document).ready(function () {
     $('.parallax').parallax();
 });
 
+// Sends data to app.py through ajax to add favourites.
 function addFavourite(comicId) {
     $.ajax({
         data: JSON.stringify({ "comic_id": comicId }),
@@ -26,6 +28,7 @@ function addFavourite(comicId) {
         })
 }
 
+// Sends data to app.py through ajax to delete favourites.
 function deleteFavourite(comicId) {
     $.ajax({
         data: JSON.stringify({ "comic_id": comicId }),

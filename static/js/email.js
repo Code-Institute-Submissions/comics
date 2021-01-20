@@ -4,6 +4,7 @@ function sendMail(contactForm) {
             from_name: contactForm.name.value,
             from_email: contactForm.email.value,
             contact_body: contactForm.message.value,
+            subject: contactForm.subject.value
         })
         .then(
             //When email sends.

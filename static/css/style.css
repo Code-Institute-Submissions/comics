@@ -17,12 +17,6 @@
     position: relative;
 }
 
-.site-logo {
-    position: relative;
-    top: -17px;
-    font-weight: 600;
-}
-
 #logo {
     width: 64px;
 }
@@ -66,6 +60,12 @@
 }
 
 /*Navbar and Sidenav*/
+.site-logo {
+    position: relative;
+    top: -17px;
+    font-weight: 600;
+}
+
 .sidenav li {
     border-bottom: 1px solid black;
 }
