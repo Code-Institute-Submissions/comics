@@ -1,45 +1,39 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# Comic Box
 
-Welcome bob134552,
+## Milestone Project 3 - Data Centric Developement
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+## Bobby Jackson
 
-## Gitpod Reminders
+A site designed for use by anyone that is enthusiastic about reading and sharing comic books.
+The website features a gallery of various comic books with search function, user registration, comic book editting,
+the ability to favourite comics, an about page and a contact page.
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## UX
 
-`python3 -m http.server`
+The ideal user for this site is:
+- Someone interested in comic books.
+- Willing to share and recommend comic books they have read.
+- Ideally English speaking.
 
-A blue button should appear to click: *Make Public*,
+Visitors to the site are looking for:
+- A place to return to for suggestions on the next comic book to read.
+- The ability to make new entries on comics that may not be already on the site.
 
-Another blue button should appear to click: *Open Browser*.
+The website should be:
+- Easy to navigate.
+- Simple registration and log in.
+- Able to search through a collection of comics to find specific ones.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### User Stories
 
-A blue button should appear to click: *Make Public*,
+1. As a new visitor, I want to be able to navigate the site with ease.
+2. As a new visitor, I want to be able to use the site as close to a registered user in order to decide if I should sign up.
+3. As a new visitor, I want to be able to sign up easily and get started browsing.
+4. As a new and existing user, I want to be able to favourite comics to know which ones I am interested in.
+5. As a new and existing user, I want to provide my own entries to the collection.
+6. As a new and exisiting user, I want to be able to edit my details should they change.
+7. As a moderator, I want to be able to edit or delete other users post should they contain anything inappropriate.
+8. As a user, I want an easy to fill contact form, so I can contact the owner of the site for new ideas or to help moderate the site.
 
-Another blue button should appear to click: *Open Browser*.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
+The colour scheme for the site was based on the [Spider-Man](https://www.behance.net/gallery/18419415/Comic-Books-Color-Palettes) colour 
+pallete found while looking on Google.

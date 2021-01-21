@@ -1,3 +1,34 @@
+/*Colours*/
+
+body {
+    background-color: #1a323e;
+}
+
+.bg-nav {
+    background-color: #902724;
+}
+
+.search-bar {
+    background-color: darkslateblue;
+}
+
+.bg-fab {
+    background-color: #1b729f;
+}
+
+.card-content {
+    background-color: darkslateblue;
+    color: aquamarine;
+}
+
+.title {
+    color: aquamarine;
+}
+
+.content {
+    color: aquamarine;
+}
+
 /*Logo, images and icons*/
 .card-image img {
     height: 500px;
@@ -9,7 +40,7 @@
 
 .heart {
   font-size: 25px;
-	color:red !important;
+	color:#f23c27 !important;
 }
 
 .fa-undo {
@@ -46,6 +77,10 @@
 /*Banners*/
 .bottom-para {
     transform: translate3d(-50%, 105.788px, 0px)!important;
+}
+
+.bottom-para--comic {
+    transform: translate3d(-50%, 732.788px, 0px)!important;
 }
 
 .top-para {

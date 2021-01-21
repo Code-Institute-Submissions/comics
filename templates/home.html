@@ -3,9 +3,17 @@
 Home
 {% endblock %}
 
+{% block bannertop %}
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="https://cdn.vox-cdn.com/thumbor/Xn60_vVln4vtdRr8RCwrKMMzNMo=/0x0:4665x3110/1200x800/filters:focal(1960x1182:2706x1928)/cdn.vox-cdn.com/uploads/chorus_image/image/66607675/AP19276581004922.7.jpg" class="top-para">
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
 <!--Search Bar-->
-<div class="row search-bar card grey lighten-5">
+<div class="row search-bar card">
     <form action="{{ url_for('search') }}" method="POST" class="col s12">
         <div class="row valign-wrapper center-align">
             <div class="input-field col s12 m8 no-wrap">
@@ -44,22 +52,22 @@ Home
                                         <!--If favourite matches username and comic name then addFavourite is hidden and deleteFavourite is visible-->
                                         {% if favourite.username == session.user and favourite.comic_id == comic.comic_name %}
                                             <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}"
-                                                class="favourite btn-floating halfway-fab blue hide">
+                                                class="favourite btn-floating halfway-fab bg-fab hide">
                                                 <i class="heart far fa-heart"></i>
                                             </button>
                                             <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}"
-                                                class="unfavourite btn-floating halfway-fab blue">
+                                                class="unfavourite btn-floating halfway-fab bg-fab">
                                                 <i class="heart fas fa-heart"></i>
                                             </button>
                                             <!--Then Breaks-->
                                             {% break %}
                                         {% elif loop.last %}
                                             <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}"
-                                                class="favourite btn-floating halfway-fab blue">
+                                                class="favourite btn-floating halfway-fab bg-fab">
                                                 <i class="heart far fa-heart"></i>
                                             </button>
                                             <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}"
-                                                class="unfavourite btn-floating halfway-fab blue hide">
+                                                class="unfavourite btn-floating halfway-fab bg-fab hide">
                                                 <i class="heart fas fa-heart"></i>
                                             </button>
                                         {% else %}
@@ -70,11 +78,11 @@ Home
                                 {% else %}
                                     <!--If no favourites sets default-->
                                     <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}"
-                                        class="favourite btn-floating halfway-fab blue">
+                                        class="favourite btn-floating halfway-fab bg-fab">
                                         <i class="heart far fa-heart"></i>
                                     </button>
                                     <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}"
-                                        class="unfavourite btn-floating halfway-fab blue hide">
+                                        class="unfavourite btn-floating halfway-fab bg-fab hide">
                                         <i class="heart fas fa-heart"></i>
                                     </button>
                                 {% endif %}
@@ -112,21 +120,21 @@ Home
                                     {% for favourite in favourites %}
                                         {% if favourite.username == session.user and favourite.comic_id == comic.comic_name %}
                                             <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}"
-                                                class="favourite btn-floating halfway-fab blue hide">
+                                                class="favourite btn-floating halfway-fab bg-fab hide">
                                                 <i class="heart far fa-heart"></i>
                                             </button>
                                             <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}"
-                                                class="unfavourite btn-floating halfway-fab blue">
+                                                class="unfavourite btn-floating halfway-fab bg-fab">
                                                 <i class="heart fas fa-heart"></i>
                                             </button>
                                             {% break %}
                                         {% elif loop.last %}
                                             <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}"
-                                                class="favourite btn-floating halfway-fab blue">
+                                                class="favourite btn-floating halfway-fab bg-fab">
                                                 <i class="heart far fa-heart"></i>
                                             </button>
                                             <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}"
-                                                class="unfavourite btn-floating halfway-fab blue hide">
+                                                class="unfavourite btn-floating halfway-fab bg-fab hide">
                                                 <i class="heart fas fa-heart"></i>
                                             </button>
                                         {% else %}
@@ -135,11 +143,11 @@ Home
                                     {% endfor %}
                                 {% else %}
                                     <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}"
-                                        class="favourite btn-floating halfway-fab blue">
+                                        class="favourite btn-floating halfway-fab bg-fab">
                                         <i class="heart far fa-heart"></i>
                                     </button>
                                     <button type="submit" onclick="deleteFavourite(this.id)" id="{{ comic.comic_name }}"
-                                        class="unfavourite btn-floating halfway-fab blue hide">
+                                        class="unfavourite btn-floating halfway-fab bg-fab hide">
                                         <i class="heart fas fa-heart"></i>
                                     </button>
                                 {% endif %}

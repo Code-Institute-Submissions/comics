@@ -11,7 +11,7 @@
     <div class="col m5 s12">
         <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}" class="comic-image">
     </div>
-    <div class="col m7 s12 center-align">
+    <div class="col m7 s12 center-align content">
         <h3><strong>
                 {{ comic.comic_name }}
             </strong></h3>
@@ -34,4 +34,12 @@
         </div>
     </div>
 
+    {% endblock %}
+
+    {% block bannerbottom %}
+    <div class="parallax-container">
+        <div class="parallax">
+            <img src="https://cdn.wallpapersafari.com/52/76/8aSzdZ.jpg" class="bottom-para--comic">
+        </div>
+    </div>
     {% endblock %}

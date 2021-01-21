@@ -188,9 +188,7 @@ def delete_favourite():
 def profile(username):
     # Fetches users profile information.
     user = mongo.db.users.find_one({"username": username})
-    if session["user"]:
-        return render_template("profile.html", user=user)
-    return redirect(url_for("login"))
+    return render_template("profile.html", user=user)
 
 
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])

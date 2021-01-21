@@ -9,7 +9,7 @@ Profile
 
     <div class="row">
         <div class="col s12">
-            <h3 class="center-align">Profile</h3>
+            <h3 class="center-align title">Profile</h3>
         </div>
     </div>
 
@@ -34,6 +34,7 @@ Profile
                     <label for="username">Username</label>
                 </div>
             </div>
+            {% if session.user %}
                 <!--Allows moderators to grant moderator status to others-->
                 {% if session.moderator == "yes" %}
                     <form class="center-align" method="POST" action="{{ url_for('moderator', username=user.username) }}">
@@ -51,14 +52,15 @@ Profile
                         </p>
                     </form>
                 {% endif %}
-            <!--Prevent moderators changing other users details-->
-            {% if user.username == session.user %}
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <a href="{{ url_for('edit_profile', user_id=user._id) }}" class="btn btn-small blue">Edit Details</a>
-                        <a href="{{ url_for('change_password', user_id=user._id) }}" class="btn btn-small green">Change Password</a>
+                <!--Prevent moderators changing other users details-->
+                {% if user.username == session.user %}
+                    <div class="row">
+                        <div class="col s12 center-align">
+                            <a href="{{ url_for('edit_profile', user_id=user._id) }}" class="btn btn-small blue">Edit Details</a>
+                            <a href="{{ url_for('change_password', user_id=user._id) }}" class="btn btn-small green">Change Password</a>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             {% endif %}
         </div>
 
