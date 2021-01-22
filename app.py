@@ -69,6 +69,15 @@ def favourites():
     return render_template("home.html", comics=comics, favourites=favourites)
 
 
+@app.route("/my_submissions", methods=["GET", "POST"])
+def my_submissions():
+    # Show only users submissions
+    comics = list(mongo.db.books.find({"submitted_by": session["user"]}))
+    favourites = list(mongo.db.favourites.find(
+        {"username": session["user"]}))
+    return render_template("home.html", comics=comics, favourites=favourites)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     ###
