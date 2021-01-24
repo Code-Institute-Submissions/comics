@@ -4,16 +4,19 @@
 
 ## Bobby Jackson
 
-A site designed for use by anyone that is enthusiastic about reading and sharing comic books.
+A site designed for use by anyone that is enthusiastic about reading, sharing and finding comic books.
+The website contains comics from a variety of genres. 
 The website features a gallery of various comic books with search function, user registration, comic book editting,
-the ability to favourite comics, an about page and a contact page.
+the ability to favourite comics, an about page and a contact page. 
+The primary goal of the website is to create a large collection of various comic books for a wide user base. 
 
 ## UX
 
 The ideal user for this site is:
-- Someone interested in comic books.
-- Willing to share and recommend comic books they have read.
-- Ideally English speaking.
+- Interested in comic books.
+- Interested in sharing and recommending comic books they have read.
+- Interested in searching for new comics to read.
+- English speaking.
 
 Visitors to the site are looking for:
 - A place to return to for suggestions on the next comic book to read.
@@ -21,19 +24,20 @@ Visitors to the site are looking for:
 
 The website should be:
 - Easy to navigate.
-- Simple registration and log in.
+- Have a simple registration and log in.
 - Able to search through a collection of comics to find specific ones.
 
 ### User Stories
 
 1. As a new visitor, I want to be able to navigate the site with ease.
-2. As a new visitor, I want to be able to use the site as close to a registered user in order to decide if I should sign up.
+2. As a new visitor, I want to be able to use the site before registering, 
+   and still be able to use most features so that I make a informed decision on whether to sign up. 
 3. As a new visitor, I want to be able to sign up easily and get started browsing.
 4. As a new and existing user, I want to be able to favourite comics to know which ones I am interested in.
 5. As a new and existing user, I want to provide my own entries to the collection.
 6. As a new and exisiting user, I want to be able to edit my details should they change.
-7. As a moderator, I want to be able to edit or delete other users post should they contain anything inappropriate.
-8. As a user, I want an easy to fill contact form, so I can contact the owner of the site for new ideas or to help moderate the site.
+7. As a moderator, I want to be able to edit or delete other user posts should they contain anything inappropriate.
+8. As a user, I want an easy to fill-in contact form, so I can contact the owner of the site for new ideas or to help moderate the site.
 
 ### Design
 
@@ -51,20 +55,105 @@ The website should be:
 
 ## Features
 
-Every page features a responsive navigation bar(navbar) containing relevant links depending on who is using the site, the site logo which sits at the left of the
+Every page features a responsive navigation bar(navbar) containing relevant links depending on who is using the site. The site logo which sits at the left of the
 navbar and also redirects users to the home page.
 
 #### Home Page
 
-The Home page is the main page of the site and features a full gallery of user submitted comics, a search bar for users to find comics based on
+The Home page is the main page of the site and features a full gallery of all user submitted comics. 
+Some comics with mature content are omitted for users under the age of 16, or if not logged in.
+ The home page also contains a search bar for users to find comics based on
 the comics name, description, author or genre. The page also allows the user to see more about individual comics and redirect them to a
 site where they may purchase the book if interested.
 
-The Home page also allows signed in users to favourite/unfavourite comics by clicking the heart button next to each comic image.
+The Home page allows signed in users to favourite/unfavourite comics by clicking the heart button next to each comic image.
 
-Each comic entry has management options depending on if the user is a moderator or the one who submitted the comic(Edit and delete).
+A comic entry will have management options if the user is a moderator or the one who submitted the comic(Edit and delete).
 
 #### Profile Page
 
 The Profile Page allows users to change any relevant information about themselves through the edit profile button or the change password button.
-The page also allows other users to look at the profile of who ever submitted, while moderators are able to grant mod status to non moderator users.
+The page also allows users to look at the profile of a user who submitted a comic. Moderators are able to grant mod status to non moderator users.
+
+#### New/Edit Entry Page
+
+This page consits of a form gathering all the relevant information required for inputting or editing a new comic on the site.
+ In particular this includes the following:
+ - Comic name
+ - Author
+ - Brand
+ - Genre
+ - Cover Image link
+ - Synopsis
+ - Store link (to buy)
+ - Check box if there is mature content
+
+If the inputted comic already exists, the user will be notified after clicking on the submit button and the comic is not added to the site. 
+
+#### My Submission Page
+
+This page only displays submissions made by the logged in user. 
+Similar to the Home page it displays a gallery of the submitted comics by the user. 
+The comics on the Submission page can be favourited, deleted or edited. 
+There is also a more info button which directs the user to another page, providing more information and a synopsis of the comic book.
+A search bar is also available, similar to the Home Page, where users can search for comics based on the comics name, description, author or genre.
+
+#### Favourites Page
+
+This page is similar in apperance to the Submission/Home page. 
+Any comics that have been favourited, 
+by clicking on the 'heart' button, appear in the gallery on the Favourites page. Comics can be favouited from either the Home or Submission pages.  
+All the same features for deleting/editing are availalbe if the comic was submitted by the logged in user, or if the user is a moderator. 
+It is possible to remove any comics from the favourite page by clicking on the 'heart' button. 
+As mentioned before there is a more info and buy (for purchasing) buttons, both identical to those on the Home and Submission pages. 
+A search bar is also included as on the Home/Submission page.
+
+#### About Page
+
+The About page features two large images on the top and bottom of the page, depicting characters from Marvel and DC comics. 
+The About page contains a brief description of the purpose and creator of the site.
+
+#### Contact Page
+
+The Contact page features a contact form, which requests the following information:
+- Name
+- Email Address
+- Subject
+- Message
+
+There is a submit button on the bottom of the page, which allows the user to send their message after completing the form. 
+If any of the above inputs are empty, after clicking submit, the message will not be sent,
+ and the user is notified of the required information that was not input. 
+
+#### Register Page
+
+The Register page is only visible to users that are not logged in or new users. 
+This page allows a new user to input their information so that they can be added to the database.
+This allows them to login and use all features (excluding moderator features) of the website.
+The register page featres a registration form, which requires the following information: 
+- First Name
+- Last Name
+- Date of Birth
+- Email
+- Username
+- Password
+
+A submit button at the bottom of the registration form allows the user to input the information to the database. 
+On the registration form if any field is left empty/incorrectly filled, a red line appears underneath the inccorect information.
+Additionally, the form cannot be submitted unless all fields are correctly filled. 
+The user is notified of the missing inforation if they click on the submit button before all fields are correctly filled. 
+If the inputted username is already taken, the user will be notified after clicking on the submit button, so that they can pick a different username.
+
+Below the submit button, there is a link to the login page for users that are already registered. 
+
+#### Login Page
+
+The Login page contains a simple form that requires two inputs; username and password.
+A submit button below the form brings the user to their Home page, if the login details are entered correctly.
+If the details are incorrect the user is notified that either the username/password was incorrect. 
+Below the submit button, there is a link to the registration page for users that are not registered. 
+
+#### 404 Page
+
+This page is used to handle 404 errors in the event that the user tries to open a page that does not exist.
+It contains a button that redirects users to the Home page.
