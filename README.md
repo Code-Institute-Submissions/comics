@@ -157,3 +157,57 @@ Below the submit button, there is a link to the registration page for users that
 
 This page is used to handle 404 errors in the event that the user tries to open a page that does not exist.
 It contains a button that redirects users to the Home page.
+
+### Existing Features
+
+- Navbar logo on all pages, Allows users to return to the home page.
+- Search bar, allows users to search comic book collection.
+- Mature filter, Filters content for users under 16.
+- Card gallery, Displays all available comics in the collection.
+- New entry form, Allows users to submit their own comic suggestions.
+- About page, Lets users know more about the site.
+- Profile page, Allows users to edit their own information.
+- Comic page, Displays more information on a chosen comic.
+- Favourite/Unfavourite button and page, Users are able to favourite and unfavourite comics and view them
+    on a seperate page.
+- Contact page, For users that would like to message the creator of the site.
+- Registration form, Allowing users to easily sign up to the site.
+- Edit and delete function for comics, Allows users to edit and delete their submissions.
+- Moderator system, Allows users to become Moderators in order to monitor submissions for inappropriate content.
+- 404 error handling, To redirect user back to the Home page if they try accessing other non existing pages.
+
+### Features to add in the future.
+
+- Rating system, For all users to rate comic entries to show more popular ones.
+- Live chat, For users to communicate with each other.
+- Language options, To allow a broader range of users to the site.
+- CAPTCHA to new and edit entry form and contact form, To reduce spam sent on the contact form and new comics that are added.
+
+## Technologies used (Frameworks, Libraries, Languages and Programs used)
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML)
+    - To structure the content on each page of the site.
+- [CSS](https://en.wikipedia.org/wiki/CSS)
+    - To style the site in order to make it more appealing to the user.
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+    - To initialise materialize functions and write custom functions to the site.
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+    - To write and handle back end functions for the site.
+- [Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
+    - To help with creating the html pages through the site.
+- [jQuery](https://en.wikipedia.org/wiki/JQuery)
+    - Allows for easier JavaScript to be written.
+- [Materialize](https://materializecss.com/)
+    - The site uses Materialize to help simplify the structure of the site and make it more responsive.
+- [Flask](https://en.wikipedia.org/wiki/Flask_(web_framework))
+    - Helps writing code in Python by importing functions such as render_template and flash etc.
+- [Heroku](https://www.heroku.com/)
+    - Used for deploying and managing the project.
+- [MongoDB](https://www.mongodb.com/)
+    - Used for managing and storing data sent from the site.
+- [Balsamiq](https://balsamiq.com/)
+    - Used to design the wireframe of the project during the design process.
+- [GitHub](https://github.com/)
+    - Used to store the projects code.
+- [GitPod](https://www.gitpod.io/)
+    - IDE used to build the site.
