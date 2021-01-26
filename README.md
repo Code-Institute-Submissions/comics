@@ -4,6 +4,8 @@
 
 ## Bobby Jackson
 
+<img src="https://raw.githubusercontent.com/bob134552/comics/master/static/images/responsive-mockup.jpg" alt="responsive-mockup">
+
 A site designed for use by anyone that is enthusiastic about reading, sharing and finding comic books.
 The website contains comics from a variety of genres. 
 The website features a gallery of various comic books with search function, user registration, comic book editting,
@@ -229,4 +231,40 @@ To Clone the repository:
 1. Log into GitHub.
 2. Install [Gitpod](https://www.gitpod.io/)
 3. Select the [comics repository](https://github.com/bob134552/comics) from the list of repositories.
-4. At the top of the page click the drop down button with "code". ![button](https://raw.githubusercontent.com/bob134552/comics/master/static/images/dropdown-code.jpg)
+4. At the top of the page click the drop down button with "code". 
+
+<img src="https://raw.githubusercontent.com/bob134552/comics/master/static/images/dropdown-code.jpg" alt="code-button">
+
+5. Copy the HTTPS link provided.
+6. Open your IDE and change the current directory to the location where you want the cloned directory to be.
+7. Type ```git clone``` and paste the copied HTTPS link after.
+
+    Example:
+
+    ```git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY```
+
+8. Hit Enter and your clone of the repository will be made.
+
+If any problems occur refer [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) for help.
+
+To deploy on Heroku.
+
+1. Log into Heroku.
+2. Click on "New" button and "Create new app" on the drop down.
+3. Write your apps name and select a region close to you.
+4. From the app page select "Deploy" and connect to the GitHub cloned repository from before.
+5. For the app to work there are a few settings required, Select the "Settings" tab.
+6. Click Reveal Config Vars to show this.
+
+<img src="https://raw.githubusercontent.com/bob134552/comics/master/static/images/config-vars.jpg" alt="config-vars">
+
+7. Once filled in you can then return to the "Deploy" tab and scroll to the bottom and click "Deploy branch"
+
+### Notes:
+- You will need your own config vars.
+- Secret key was generated from [here](https://randomkeygen.com/).
+- Mongo URI can be found by clicking connect in your mongoDB cluster and will look like this:
+
+        mongodb+srv://<username>:<password>@<clustername>.vv32m.mongodb.net/<dbname>?retryWrites=true&w=majority
+
+- Your MongoDB database will require to be set up with 3 collections(books, users and favourites.)
