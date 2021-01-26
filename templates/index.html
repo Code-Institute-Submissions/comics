@@ -11,7 +11,7 @@
     {% endblock %}
 
     <!--Allows changing page title-->
-    <title>Comics -
+    <title>Comic Box -
         {% block title %}
         {% endblock %}
     </title>
@@ -66,6 +66,12 @@
         </ul>     
     </header>
 
+    <section>
+        <!--Allows for top banners-->
+        {% block bannertop %}
+        {% endblock %}
+    </section>
+
     <!--Flash messages are here-->
     <section>
         {% with messages = get_flashed_messages() %}
@@ -79,17 +85,11 @@
         {% endwith %}
     </section>
 
-    <section>
-        <!--Allows for top banners-->
-        {% block bannertop %}
+    <!--Main content container-->
+    <main class="container">
+        {% block content %}
         {% endblock %}
-    </section>
-
-        <!--Main content container-->
-        <main class="container">
-            {% block content %}
-            {% endblock %}
-        </main>
+    </main>
 
     <section>
         <!--Allows for bottom banners-->

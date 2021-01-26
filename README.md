@@ -193,7 +193,7 @@ It contains a button that redirects users to the Home page.
     - To initialise materialize functions and write custom functions to the site.
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
     - To write and handle back end functions for the site.
-- [Jinja](https://en.wikipedia.org/wiki/Jinja_(template_engine))
+- [Jinja2](https://en.wikipedia.org/wiki/Jinja_(template_engine))
     - To help with creating the html pages through the site.
 - [jQuery](https://en.wikipedia.org/wiki/JQuery)
     - Allows for easier JavaScript to be written.
@@ -211,3 +211,22 @@ It contains a button that redirects users to the Home page.
     - Used to store the projects code.
 - [GitPod](https://www.gitpod.io/)
     - IDE used to build the site.
+- [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
+    - To secure a users log in password by creating a hash of the password.
+
+## Testing
+
+
+## Deployment
+
+The project was developed using Gitpod IDE. It was committed and pushed to GitHub through the use of git using the functions in Gitpod.
+
+It was then deployed on Heroku by connecting the GitHub repository to the Heroku app.
+
+To deploy the app on Heroku, first clone the repository.
+
+To Clone the repository:
+1. Log into GitHub.
+2. Install [Gitpod](https://www.gitpod.io/)
+3. Select the [comics repository](https://github.com/bob134552/comics) from the list of repositories.
+4. At the top of the page click the drop down button with "code". ![button](https://raw.githubusercontent.com/bob134552/comics/master/static/images/dropdown-code.jpg)
