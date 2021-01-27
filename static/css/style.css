@@ -74,18 +74,6 @@ body {
 .genre {
     font-size: 12px;
 }
-/*Banners*/
-.bottom-para {
-    transform: translate3d(-50%, 105.788px, 0px)!important;
-}
-
-.bottom-para--comic {
-    transform: translate3d(-50%, 732.788px, 0px)!important;
-}
-
-.top-para {
-    transform: translate3d(-50%, 220.149px, 11px) !important;
-}
 
 /*Search Bar*/
 .search-bar {

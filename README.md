@@ -43,7 +43,7 @@ The website should be:
 
 ### Design
 
-- Color Scheme
+- Colour Scheme
     - The colour scheme for the site was based on the [Spider-Man](https://www.behance.net/gallery/18419415/Comic-Books-Color-Palettes) colour 
       pallete found while looking on Google.
 
@@ -52,6 +52,7 @@ The website should be:
 
 ### Wireframe Mockups
 
+- Site Map - [View](https://github.com/bob134552/comics/tree/master/wireframes/sitemap.pdf)
 - Deskop Wireframe - [View](https://github.com/bob134552/comics/tree/master/wireframes/desktop-wf.pdf)
 - Mobile Wireframe - [View](https://github.com/bob134552/comics/tree/master/wireframes/mobile-wf.pdf)
 
@@ -198,7 +199,7 @@ It contains a button that redirects users to the Home page.
 - [Jinja2](https://en.wikipedia.org/wiki/Jinja_(template_engine))
     - To help with creating the html pages through the site.
 - [jQuery](https://en.wikipedia.org/wiki/JQuery)
-    - Allows for easier JavaScript to be written.
+    - Allows for easier DOM manipulation.
 - [Materialize](https://materializecss.com/)
     - The site uses Materialize to help simplify the structure of the site and make it more responsive.
 - [Flask](https://en.wikipedia.org/wiki/Flask_(web_framework))
@@ -258,7 +259,9 @@ To deploy on Heroku.
 
 <img src="https://raw.githubusercontent.com/bob134552/comics/master/static/images/config-vars.jpg" alt="config-vars">
 
-7. Once filled in you can then return to the "Deploy" tab and scroll to the bottom and click "Deploy branch"
+7. Once filled in you can then return to the "Deploy" tab and scroll to the bottom and click "Deploy branch".
+
+Your app should be deployed and a link will be available to view it.
 
 ### Notes:
 - You will need your own config vars.
