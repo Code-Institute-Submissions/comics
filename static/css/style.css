@@ -1,3 +1,19 @@
+/*Footer*/
+
+footer {
+    height: 64px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
 /*Colours*/
 
 body {
@@ -66,6 +82,11 @@ body {
     width: 50px;
 }
 
+.subscribe {
+    border-radius: 15px;
+    background-color: #902724;
+}
+
 /*Card*/
 .card-title {
     font-size: 15px !important;
@@ -104,6 +125,15 @@ body {
 .no-wrap {        
     white-space: nowrap;
     overflow: hidden;
+}
+
+/*Misc*/
+
+.join {
+    position: relative;
+    top: 20vh;
+    background-color: #a2ab1845;
+    padding: 10px !important;
 }
 
 /*Media Queries*/

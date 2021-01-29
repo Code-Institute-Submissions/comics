@@ -31,15 +31,23 @@ The website should be:
 
 ### User Stories
 
+#### New User
+
 1. As a new visitor, I want to be able to navigate the site with ease.
 2. As a new visitor, I want to be able to use the site before registering, 
    and still be able to use most features so that I make a informed decision on whether to sign up. 
 3. As a new visitor, I want to be able to sign up easily and get started browsing.
-4. As a new and existing user, I want to be able to favourite comics to know which ones I am interested in.
-5. As a new and existing user, I want to provide my own entries to the collection.
-6. As a new and exisiting user, I want to be able to edit my details should they change.
-7. As a moderator, I want to be able to edit or delete other user posts should they contain anything inappropriate.
-8. As a user, I want an easy to fill-in contact form, so I can contact the owner of the site for new ideas or to help moderate the site.
+
+#### Returning User
+1. As a returning user, I want to be able to favourite comics to know which ones I am interested in.
+2. As a returning user, I want to provide my own entries to the collection.
+3. As a returning user, I want to be able to edit my details should they change.
+4. As a returning user, I want an easy to fill-in contact form, so I can contact the owner of the site for new ideas or to help moderate the site.
+
+#### Moderator
+
+1. As a moderator, I want to be able to edit or delete other user posts should they contain anything inappropriate.
+2. As a moderator, I want to be able to give other users the moderator status should they be willing to help maintain the site.
 
 ### Design
 
@@ -219,6 +227,63 @@ It contains a button that redirects users to the Home page.
 
 ## Testing
 
+### Manual Testing Based On User Stories.
+
+#### New User
+
+1. As a new visitor, I want to be able to navigate the site with ease.
+    
+    Desktop:  
+    1. Clicking on each navigation link brings user to the respective page.  
+    2. Clicking the site logo brings user to the home page of the site.
+
+    Mobile:  
+    1. Clicking on the bars on the navigation bar brings up the links to the other pages in the site, swiping left to right also
+        brings up the links.  
+    2. Clicking on the logo brings user to the home page of the site.
+
+2. As a new visitor, I want to be able to use the site before registering, 
+   and still be able to use most features so that I make a informed decision on whether to sign up.  
+   
+   1. The user is able to click on both buy and the comic itself if they wish to know more about the comic.
+   2. The contact page is avialable for everyone to use.
+
+3. As a new visitor, I want to be able to sign up easily and get started browsing.
+
+    1. From the home page there is a button available to bring the user to the registration page.
+        Alternatively there is a navigation link to the registration page.
+
+#### Returning User
+1. As a returning user, I want to be able to favourite comics to know which ones I am interested in.
+
+    1. Clicking on the heart at the bottom right of the comic image fills the heart.
+    2. Returning to the home page remembers which comics are favourited and displays to reflect that.
+
+2. As a returning user, I want to provide my own entries to the collection.
+
+    1. After the user has logged in they are given the option to add more comics to the collection through a callout button
+        or through the navigation bar link for New Entry.
+    2. Clicking on either button or navigation link brings the user to the New Entry page which asks the user to fill in a form for 
+        the details of the new comic.
+    3. If a comic already exists the user will be notified and will not be added.
+
+3. As a returning user, I want to be able to edit my details should they change.
+
+    1. From the profile page, clicking on the "Edit Profile" button brings the user to an editable form prefilled with their current details.
+    2. Changing the details and clicking submit updates the users data in the database.
+    3. From the profile page, clicking on the "Change Password" button brings the user to the change password page.
+    4. The change password page requires the user to input their old password and a new password twice to confirm the change.
+
+4. As a returning user, I want an easy to fill-in contact form, so I can contact the owner of the site for new ideas or to help moderate the site.
+
+    1. The contact page is available from the navigation bar.
+    2. It is a simple form that asks for the users name, email, subject and message.
+    3. Trying to send the message without filling all parts of the form informs the user that all inputs are required.
+
+#### Moderator
+
+1. As a moderator, I want to be able to edit or delete other user posts should they contain anything inappropriate.
+2. As a moderator, I want to be able to give other users the moderator status should they be willing to help maintain the site.
 
 ## Deployment
 

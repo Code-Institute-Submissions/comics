@@ -24,47 +24,34 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    comics = list(mongo.db.books.find())
-    # Only find favourites if session user exists.
-    if session.get("user") is not None:
+    query = request.args.get("query")
+    if query is not None:
+        comics = list(mongo.db.books.find({"$text": {"$search": query}}))
+    else:
+        comics = list(mongo.db.books.find().sort("_id", -1))
+    # Only find favourites if session username exists.
+    if session.get("username") is not None:
         favourites = list(mongo.db.favourites.find(
-            {"username": session["user"]}))
+            {"username": session["username"]}))
         return render_template("home.html",
                                comics=comics, favourites=favourites)
     else:
-        # If no user logged in set mature filter.
+        # If no username logged in set mature filter.
         session["mature"] = "yes"
         return render_template("home.html", comics=comics)
 
 
-###
-# Build search function.
-# mongodb index set to search
-# comic_name, description and author
-###
-@app.route("/search", methods=["GET", "POST"])
-def search():
-    query = request.form.get("query")
-    comics = list(mongo.db.books.find({"$text": {"$search": query}}))
-    if session.get("user") is not None:
-        favourites = list(mongo.db.favourites.find(
-            {"username": session["user"]}))
-    else:
-        favourites = []
-    return render_template("home.html", comics=comics, favourites=favourites)
-
-
 @app.route("/favourites", methods=["GET", "POST"])
 def favourites():
-    # Search favourites of logged in user
+    # Search favourites of logged in username
     favourites = list(mongo.db.favourites.find(
-        {"username": session["user"]}))
+        {"username": session["username"]}))
     comics = []
     # Iterates through favourites list to fill comics list
     for favourite in favourites:
         comic = list(mongo.db.books.find(
             {"comic_name": {"$eq":
-                            favourite["comic_id"]}}))
+                            favourite["comic_name"]}}))
         comics += comic
     return render_template("home.html", comics=comics, favourites=favourites)
 
@@ -72,9 +59,9 @@ def favourites():
 @app.route("/my_submissions", methods=["GET", "POST"])
 def my_submissions():
     # Show only users submissions
-    comics = list(mongo.db.books.find({"submitted_by": session["user"]}))
+    comics = list(mongo.db.books.find({"submitted_by": session["username"]}))
     favourites = list(mongo.db.favourites.find(
-        {"username": session["user"]}))
+        {"username": session["username"]}))
     return render_template("home.html", comics=comics, favourites=favourites)
 
 
@@ -125,14 +112,14 @@ def login():
             # Checks database password with user input password.
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
+                session["username"] = request.form.get("username").lower()
                 # Sets mature filter if user age is under 16.
                 session["mature"] = "yes" if age < 16 else "no"
                 if existing_user["mod"] == "yes":
                     # Sets moderator status.
                     session["moderator"] = "yes"
                 flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("home", user=session["user"]))
+                return redirect(url_for("home", user=session["username"]))
             else:
                 flash("Incorrect Username/Password")
                 return redirect(url_for("login"))
@@ -149,7 +136,7 @@ def login():
 ##
 def logout():
     flash("You've been logged out.")
-    session.pop("user")
+    session.pop("username")
     if session.get("moderator") is not None:
         session.pop("moderator")
     session["mature"] = "yes"
@@ -164,11 +151,11 @@ def add_favourite():
     # on every favourite entry.
     ###
     response = request.get_json()
-    comic_id = response["comic_id"]
+    comic_name = response["comic_name"]
     # Creates favourite object.
     favourite = {
-        "comic_id": comic_id,
-        "username": session["user"]
+        "comic_name": comic_name,
+        "username": session["username"]
     }
     # Inserts new favourite.
     mongo.db.favourites.insert_one(favourite)
@@ -183,10 +170,10 @@ def delete_favourite():
     # database instead of insert
     ###
     response = request.get_json()
-    comic_id = response["comic_id"]
+    comic_name = response["comic_name"]
     unfavourite = {
-        "comic_id": comic_id,
-        "username": session["user"]
+        "comic_name": comic_name,
+        "username": session["username"]
     }
     # Removes favourite.
     mongo.db.favourites.remove(unfavourite)
@@ -210,14 +197,14 @@ def edit_profile(user_id):
             "last_name": request.form.get("last_name").capitalize(),
             "dob": request.form.get("dob"),
             "email": request.form.get("email"),
-            "username": session["user"],
+            "username": session["username"],
             "password": mongo.db.users.find_one(
                 {"_id": ObjectId(user_id)})["password"]
         }
         # Updates user's data to reflect changes, if post request.
         mongo.db.users.update({"_id": ObjectId(user_id)}, change)
         flash("Profile Updated.")
-        return redirect(url_for('profile', username=session['user']))
+        return redirect(url_for('profile', username=session['username']))
     return render_template("edit_profile.html", user=user)
 
 
@@ -265,7 +252,7 @@ def change_password(user_id):
                                                     generate_password_hash(
                                                         new_pass)}})
                 flash("Password Changed.")
-                return redirect(url_for('profile', username=session['user']))
+                return redirect(url_for('profile', username=session['username']))
             else:
                 # If new and repeat password don't match.
                 flash("New Password Must Match.")
@@ -295,7 +282,7 @@ def new_entry():
             "buy_from": request.form.get("buy_from"),
             "comic_image": request.form.get("image_link"),
             "brand": request.form.get("brand"),
-            "submitted_by": session["user"],
+            "submitted_by": session["username"],
             "is_mature": mature
         }
         # Checks if comic already exists.
@@ -335,7 +322,7 @@ def edit_entry(entry_id):
             "buy_from": request.form.get("buy_from"),
             "comic_image": request.form.get("image_link"),
             "brand": request.form.get("brand"),
-            "submitted_by": session["user"],
+            "submitted_by": session["username"],
             "is_mature": mature
         }
         mongo.db.books.update({"_id": ObjectId(entry_id)}, update_entry)
@@ -355,17 +342,11 @@ def delete_comic(entry_id):
     return redirect(url_for("home"))
 
 
-@app.route("/<entry_id>/<comic_name>")
+@app.route("/<comic_name>/<entry_id>")
 def more_info(entry_id, comic_name):
     # Searches for specified comic data.
     comic = mongo.db.books.find_one({"_id": ObjectId(entry_id)})
     return render_template("comic.html", comic=comic)
-
-
-# Renders about page.
-@app.route("/about")
-def about():
-    return render_template("about.html")
 
 
 # Renders contact page.

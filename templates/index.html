@@ -20,47 +20,44 @@
 <body>
     <header>
         <!--Navbar-->
-        <nav class="bg-nav lighten-2">
-            <div class="nav-wrapper">
-                <a href="{{ url_for('home') }}" class="brand-logo"><img src="{{ url_for('static', filename='images/comic.png') }}" alt="Logo" id="logo"><span class="site-logo black-text hide-on-small-only">Comic Box</span></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <!--If user is logged in display user links in navbar-->
-                    {% if session.user %}
-                        <li><a href="{{ url_for('new_entry') }}">New Entry</a></li>
-                        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                        <li><a href="{{ url_for('my_submissions') }}">My Submissions</a></li>
-                        <li><a href="{{ url_for('favourites') }}">Favourites</a></li>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
-                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                        <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-                    {% else %}
-                    <!--If no user logged in show new user links-->
-                        <li><a href="{{ url_for('register') }}">Register</a></li>
-                        <li><a href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
-                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-
+        <div class="navbar-fixed"> 
+            <nav class="bg-nav lighten-2">
+                <div class="nav-wrapper">
+                    <a href="{{ url_for('home') }}" class="brand-logo"><img src="{{ url_for('static', filename='images/comic.png') }}" alt="Logo" id="logo"><span class="site-logo black-text hide-on-small-only">Comic Box</span></a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <!--If user is logged in display user links in navbar-->
+                        {% if session.username %}
+                            <li><a href="{{ url_for('new_entry') }}">New Entry</a></li>
+                            <li><a href="{{ url_for('profile', username=session['username']) }}">Profile</a></li>
+                            <li><a href="{{ url_for('my_submissions') }}">My Submissions</a></li>
+                            <li><a href="{{ url_for('favourites') }}">Favourites</a></li>
+                            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                        {% else %}
+                        <!--If no user logged in show new user links-->
+                            <li><a href="{{ url_for('register') }}">Register</a></li>
+                            <li><a href="{{ url_for('login') }}">Log In</a></li>
+                            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>   
         <!--Sidenav for smaller devices-->
         <ul class="sidenav bg-nav" id="mobile-demo">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
-                    {% if session.user %}
+                    {% if session.username %}
                         <li><a href="{{ url_for('new_entry') }}">New Entry</a></li>
-                        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                        <li><a href="{{ url_for('profile', username=session['username']) }}">Profile</a></li>
                         <li><a href="{{ url_for('favourites') }}">Favourites</a></li>
                         <li><a href="{{ url_for('my_submissions') }}">My Submissions</a></li>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
                         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
                     {% else %}
                         <li><a href="{{ url_for('register') }}">Register</a></li>
                         <li><a href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
                         <li><a href="{{ url_for('contact') }}">Contact</a></li>
                     {% endif %}
         </ul>     
@@ -90,9 +87,13 @@
         {% endblock %}
     </main>
 
-    <!--Allows for bottom banners-->
-    {% block bannerbottom %}
-    {% endblock %}
+    <footer class="page-footer bg-nav">
+        <div class="row">
+            <div class="col s12 center-align">
+                Copyright&copy; <script>document.write(new Date().getFullYear());</script>
+            </div>
+        </div>
+    </footer>
 
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"

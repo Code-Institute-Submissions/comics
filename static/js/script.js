@@ -15,29 +15,29 @@ $(document).ready(function () {
 });
 
 // Sends data to app.py through ajax to add favourites.
-function addFavourite(comicId) {
+function addFavourite(comic_name) {
     $.ajax({
-        data: JSON.stringify({ "comic_id": comicId }),
+        data: JSON.stringify({ "comic_name": comic_name }),
         contentType: "application/json",
         type: 'POST',
         url: '/add_favourite'
     })
         .done(function () {
-            $(`button.favourite[id="${comicId}"]`).addClass("hide");
-            $(`button.unfavourite[id="${comicId}"]`).removeClass("hide");
+            $(`button.favourite[id="${comic_name}"]`).addClass("hide");
+            $(`button.unfavourite[id="${comic_name}"]`).removeClass("hide");
         })
 }
 
 // Sends data to app.py through ajax to delete favourites.
-function deleteFavourite(comicId) {
+function deleteFavourite(comic_name) {
     $.ajax({
-        data: JSON.stringify({ "comic_id": comicId }),
+        data: JSON.stringify({ "comic_name": comic_name }),
         contentType: "application/json",
         type: 'POST',
         url: '/delete_favourite'
     })
         .done(function () {
-            $(`button.unfavourite[id="${comicId}"]`).addClass("hide");
-            $(`button.favourite[id="${comicId}"]`).removeClass("hide");
+            $(`button.unfavourite[id="${comic_name}"]`).addClass("hide");
+            $(`button.favourite[id="${comic_name}"]`).removeClass("hide");
         })
 }

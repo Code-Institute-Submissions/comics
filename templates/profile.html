@@ -34,7 +34,7 @@ Profile
                     <label for="username">Username</label>
                 </div>
             </div>
-            {% if session.user %}
+            {% if session.username%}
                 <!--Allows moderators to grant moderator status to others-->
                 {% if session.moderator == "yes" %}
                     <form class="center-align" method="POST" action="{{ url_for('moderator', username=user.username) }}">
@@ -53,7 +53,7 @@ Profile
                     </form>
                 {% endif %}
                 <!--Prevent moderators changing other users details-->
-                {% if user.username == session.user %}
+                {% if user.username == session.username %}
                     <div class="row">
                         <div class="col s12 center-align">
                             <a href="{{ url_for('edit_profile', user_id=user._id) }}" class="btn btn-small blue">Edit Details</a>

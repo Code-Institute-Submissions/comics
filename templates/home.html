@@ -8,13 +8,34 @@ Home
     <div class="parallax">
         <img src="https://cdn.vox-cdn.com/thumbor/Xn60_vVln4vtdRr8RCwrKMMzNMo=/0x0:4665x3110/1200x800/filters:focal(1960x1182:2706x1928)/cdn.vox-cdn.com/uploads/chorus_image/image/66607675/AP19276581004922.7.jpg">
     </div>
+    {% if session.username is not defined %}
+        <div class="row">
+            <div class="col s12 center-align join">
+                <p class="callout">
+                    Join a growing community today!
+                </p>
+                <a class="btn btn-large subscribe" href="{{ url_for('register') }}">Register</a>
+            </div>
+        </div>
+    {% else %}
+    <div class="row">
+            <div class="col s6 offset-s3 center-align join">
+                <p class="callout">
+                    For All Your Comic Needs!
+                    <br>
+                    Don't See A Comic You Are Looking For?
+                </p>
+                <a href="{{ url_for('new_entry') }}" class="btn btn-medium subscribe">Add It!</a>
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
 
 {% block content %}
 <!--Search Bar-->
 <div class="row search-bar card">
-    <form action="{{ url_for('search') }}" method="POST" class="col s12">
+    <form action="{{ url_for('home') }}" method="GET" class="col s12">
         <div class="row valign-wrapper center-align">
             <div class="input-field col s12 m8 no-wrap">
                 <input type="text" name="query" id="query" minlength="3" class="validate" required>
@@ -42,15 +63,17 @@ Home
                     <div class="card hoverable">
                         <!--Card Image-->
                         <div class="card-image">
-                            <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
+                            <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}">
+                                <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
+                            </a>
                             <!--If user exists-->
-                            {% if session.user %}
+                            {% if session.username %}
                                 <!--If favourites exists-->
                                 {% if favourites|length %}
                                     <!--Iterate through favourites to show either addFavourite or deleteFavourite button-->
                                     {% for favourite in favourites %}
                                         <!--If favourite matches username and comic name then addFavourite is hidden and deleteFavourite is visible-->
-                                        {% if favourite.username == session.user and favourite.comic_id == comic.comic_name %}
+                                        {% if favourite.username == session.username and favourite.comic_name == comic.comic_name %}
                                             <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}"
                                                 class="favourite btn-floating halfway-fab bg-fab hide">
                                                 <i class="heart far fa-heart"></i>
@@ -96,14 +119,12 @@ Home
                             </p>
                             <div class="card-action center-align">
                                 <!--If user is the creator or a moderator, shows delete and edit buttons-->
-                                {% if session.user == comic.submitted_by or session.moderator == "yes" %}
+                                {% if session.username == comic.submitted_by or session.moderator == "yes" %}
                                     <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn btn-small">Delete</a>
                                     <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
                                 <!--Otherwise shows only buy and more info buttons-->
                                 {% endif %}
                                     <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
-                                    <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}"
-                                        class="btn btn-small light-blue darken-2 ">More Info...</a>
                             </div>
                         </div>
                     </div>
@@ -113,12 +134,14 @@ Home
                 <div class="col s12 m4">
                     <div class="card hoverable">
                         <div class="card-image">
-                            <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
+                            <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}">
+                                <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}">
+                            </a>
                             <!--Similar to above except comics are filtered for maturity-->
-                            {% if session.user %}
+                            {% if session.username %}
                                 {% if favourites|length %}
                                     {% for favourite in favourites %}
-                                        {% if favourite.username == session.user and favourite.comic_id == comic.comic_name %}
+                                        {% if favourite.username == session.username and favourite.comic_name == comic.comic_name %}
                                             <button type="submit" onclick="addFavourite(this.id)" id="{{ comic.comic_name }}"
                                                 class="favourite btn-floating halfway-fab bg-fab hide">
                                                 <i class="heart far fa-heart"></i>
@@ -159,13 +182,11 @@ Home
                                 {{ comic.genre }}
                             </p>
                             <div class="card-action center-align">
-                                {% if session.user == comic.submitted_by or session.moderator == "yes" %}
+                                {% if session.username == comic.submitted_by or session.moderator == "yes" %}
                                     <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn btn-small">Delete</a>
                                     <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
                                 {% endif %}
                                 <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
-                                <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}"
-                                    class="btn btn-small light-blue darken-2 ">More Info...</a>
                             </div>
                         </div>
                     </div>
