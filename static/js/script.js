@@ -11,7 +11,6 @@ $(document).ready(function () {
     });
     M.updateTextFields();
     $('.modal').modal();
-    $('.parallax').parallax();
 });
 
 // Sends data to app.py through ajax to add favourites.

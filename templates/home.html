@@ -4,13 +4,13 @@ Home
 {% endblock %}
 
 {% block bannertop %}
-<div class="parallax-container">
-    <div class="parallax">
+<div class="banner">
+    <div class="banner-image">
         <img src="https://cdn.vox-cdn.com/thumbor/Xn60_vVln4vtdRr8RCwrKMMzNMo=/0x0:4665x3110/1200x800/filters:focal(1960x1182:2706x1928)/cdn.vox-cdn.com/uploads/chorus_image/image/66607675/AP19276581004922.7.jpg">
     </div>
     {% if session.username is not defined %}
         <div class="row">
-            <div class="col s12 center-align join">
+            <div class="col m4 offset-m4 s12 center-align join">
                 <p class="callout">
                     Join a growing community today!
                 </p>
@@ -19,7 +19,7 @@ Home
         </div>
     {% else %}
     <div class="row">
-            <div class="col s6 offset-s3 center-align join">
+            <div class="col m4 offset-m4 s12 center-align join">
                 <p class="callout">
                     For All Your Comic Needs!
                     <br>

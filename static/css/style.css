@@ -71,6 +71,18 @@ body {
 .fa-bars {
     color: black;
 }
+
+.banner-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    position: absolute;
+}
+
+.banner {
+    height: 500px;
+}
+
 /*Buttons*/
 .btn {
     margin-top: 4px;
@@ -131,9 +143,13 @@ body {
 
 .join {
     position: relative;
-    top: 20vh;
+    top: 10vh;
     background-color: #a2ab1845;
     padding: 10px !important;
+}
+
+.join p {
+    font-size: 30px;
 }
 
 /*Media Queries*/
@@ -147,9 +163,7 @@ body {
         margin: auto;
         margin-top: 10px;
     }
-}
 
-@media only screen and (max-width: 600px) {
     .site-logo {
         font-size: 22px;
     }

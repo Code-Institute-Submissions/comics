@@ -4,7 +4,7 @@
 
 ## Bobby Jackson
 
-<img src="https://raw.githubusercontent.com/bob134552/comics/master/static/images/responsive-mockup.jpg" alt="responsive-mockup">
+<img src="/static/images/responsive-mockup.jpg" alt="responsive-mockup">
 
 A site designed for use by anyone that is enthusiastic about reading, sharing and finding comic books.
 The website contains comics from a variety of genres. 
@@ -193,6 +193,8 @@ It contains a button that redirects users to the Home page.
 - Live chat, For users to communicate with each other.
 - Language options, To allow a broader range of users to the site.
 - CAPTCHA to new and edit entry form and contact form, To reduce spam sent on the contact form and new comics that are added.
+- Users page to display all signed up users for moderators to easily access the users profile page.
+
 
 ## Technologies used (Frameworks, Libraries, Languages and Programs used)
 
@@ -278,12 +280,35 @@ It contains a button that redirects users to the Home page.
 
     1. The contact page is available from the navigation bar.
     2. It is a simple form that asks for the users name, email, subject and message.
-    3. Trying to send the message without filling all parts of the form informs the user that all inputs are required.
+    3. Trying to send the message without filling all parts of the form informs the user that additional inputs are required.
 
 #### Moderator
 
 1. As a moderator, I want to be able to edit or delete other user posts should they contain anything inappropriate.
+
+    1. When signed in as moderator the "Edit" and "Delete" buttons are available to the user even on comics they themselves did not submit.
+    
 2. As a moderator, I want to be able to give other users the moderator status should they be willing to help maintain the site.
+
+    1. By going on other users profile page, as a moderator, there is a "Mod Status" checkbox with a "Confirm" button to grant moderator status to the user.
+
+### Problems and Bugs
+
+- Intially on the registration and change details form the datepicker input could accept any string as you could type into the input by holding down the mouse after clicking on it,
+    allowing the user to type into the input instead of the datepicker.
+
+    <img src="/static/images/datepicker.jpg" alt="datepicker-error">
+    
+     To prevent the user from being able to submit the form the following pattern was used:
+
+        pattern="(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})"
+    This means that the input was required to be in the format dd/mm/yyyy and checked for leap years and months that had either 28, 29, 30 or 31 days in that month.
+
+- Originally each favourite entry in the collection took the users _id and the comics name, this was changed to the user's username instead as the _id wasn't able to compare with the user._id in jinja
+    causing the favourite button to not work.
+
+- Jinja2 loop controls had to be added to allow the use of continue and break to allow some templating logic to work.
+
 
 ## Deployment
 
@@ -299,7 +324,7 @@ To Clone the repository:
 3. Select the [comics repository](https://github.com/bob134552/comics) from the list of repositories.
 4. At the top of the page click the drop down button with "code". 
 
-<img src="https://raw.githubusercontent.com/bob134552/comics/master/static/images/dropdown-code.jpg" alt="code-button">
+<img src="/static/images/dropdown-code.jpg" alt="code-button">
 
 5. Copy the HTTPS link provided.
 6. Open your IDE and change the current directory to the location where you want the cloned directory to be.
@@ -322,7 +347,7 @@ To deploy on Heroku.
 5. For the app to work there are a few settings required, Select the "Settings" tab.
 6. Click Reveal Config Vars to show this.
 
-<img src="https://raw.githubusercontent.com/bob134552/comics/master/static/images/config-vars.jpg" alt="config-vars">
+<img src="/static/images/config-vars.jpg" alt="config-vars">
 
 7. Once filled in you can then return to the "Deploy" tab and scroll to the bottom and click "Deploy branch".
 
