@@ -6,15 +6,16 @@
 
 {% block content %}
 
-    <div class="row">
-        <div class="col s12">
-            <h3 class="center-align title">Register</h3>
-        </div>
-    </div>
+
 
     <!--New User Form-->
     <div class="row card-panel">
         <form class="col s12" method="POST" action="{{ url_for('register') }}">
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="center-align title">Registration</h3>
+                </div>
+            </div>
             <div class="row">
                 <div class="input-field col s6">
                     <!--First Name-->

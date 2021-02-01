@@ -16,6 +16,10 @@ main {
 
 /*Colours*/
 
+.flash {
+    color: #ce201b;
+}
+
 body {
     background-color: #1a323e;
 }
@@ -38,7 +42,7 @@ body {
 }
 
 .title {
-    color: aquamarine;
+    color: rgb(0, 0, 0);
 }
 
 .content {
@@ -144,12 +148,13 @@ body {
 .join {
     position: relative;
     top: 10vh;
-    background-color: #a2ab1845;
+    background-color: #a2ab1887;
     padding: 10px !important;
 }
 
 .join p {
     font-size: 30px;
+    font-weight: 700;
 }
 
 /*Media Queries*/

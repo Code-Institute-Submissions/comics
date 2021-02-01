@@ -171,6 +171,7 @@ It contains a button that redirects users to the Home page.
 
 ### Existing Features
 
+- Callout button for both users and new visitors, Allows new visitors to register and users to go to new entry page.
 - Navbar logo on all pages, Allows users to return to the home page.
 - Search bar, allows users to search comic book collection.
 - Mature filter, Filters content for users under 16.
@@ -291,6 +292,39 @@ It contains a button that redirects users to the Home page.
 2. As a moderator, I want to be able to give other users the moderator status should they be willing to help maintain the site.
 
     1. By going on other users profile page, as a moderator, there is a "Mod Status" checkbox with a "Confirm" button to grant moderator status to the user.
+    2. Unchecking will remove mod status from that user.
+
+## Manual Testing of Elements and Features.
+
+1. Call to Action button
+    1. Clicking button when not signed in redirects user to Registration page.
+    2. Clicking button when logged in redirects user to New Entry page.
+
+2. Registration form
+    1. If any inputs are incorrect or left empty the input will become underlined in red to notify the user.
+    <img src="/static/images/registration-form.jpg" alt="registration-form">
+    The user will also be given help if the fields are incorrect like the password input.
+
+    2. If the user submits while a username already exists a flash message will notify them.
+    <img src="/static/images/registration-user.jpg">
+
+3. Log In form
+    1. If the username or password is input incorrectly the user is notified.
+    <img src="/static/images/login-test.jpg" alt="test-login">
+    2. If both username and password are correct the user will be logged into their account.
+
+4. Search bar
+    1. Search bar allows users to look for comics from either their name, author, genre or synopsis.
+    2. If there is no match the user is notified that what they are searching for yeilds no results.
+    <img src="/static/images/no-results.jpg" alt="no-results">
+    3. If a match is found the comic will be displayed.
+    <img src="/static/images/search.jpg" alt="result">
+
+5. Navigation bar
+    1. When in mobile view the navigation links are hidden and a sidenav is avialable to the user through the navbar toggler.  
+    <img src="/static/images/toggler1.jpg">   <img src="/static/images/toggler2.jpg">  
+    2. The links available are varied depending if user is logged in or not.  
+    <img src="/static/images/logged-out.jpg" alt="logged-out-links">  <img src="/static/images/logged-in.jpg" alt="logged-in-links">
 
 ### Problems and Bugs
 
@@ -299,14 +333,15 @@ It contains a button that redirects users to the Home page.
 
     <img src="/static/images/datepicker.jpg" alt="datepicker-error">
     
-     To prevent the user from being able to submit the form the following pattern was used:
+    To prevent the user from being able to submit the form the following pattern was used:
 
         pattern="(?:((?:0[1-9]|1[0-9]|2[0-9])\/(?:0[1-9]|1[0-2])|(?:30)\/(?!02)(?:0[1-9]|1[0-2])|31\/(?:0[13578]|1[02]))\/(?:19|20)[0-9]{2})"
     This means that the input was required to be in the format dd/mm/yyyy and checked for leap years and months that had either 28, 29, 30 or 31 days in that month.
-
+- The datapicker range doesn't allow the user to go past the current year but allows them to select any day of the current year as Date of Birth
+    and accepts it on registration.
+    <img src="/static/images/date-regi.jpg" alt="date-range">
 - Originally each favourite entry in the collection took the users _id and the comics name, this was changed to the user's username instead as the _id wasn't able to compare with the user._id in jinja
     causing the favourite button to not work.
-
 - Jinja2 loop controls had to be added to allow the use of continue and break to allow some templating logic to work.
 
 
