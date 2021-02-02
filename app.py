@@ -28,7 +28,7 @@ def home():
     if query is not None:
         comics = list(mongo.db.books.find({"$text": {"$search": query}}))
     else:
-        comics = list(mongo.db.books.find().sort("_id", -1))
+        comics = list(mongo.db.books.find().sort("_id", -1).limit(12))
     # Only find favourites if session username exists.
     if session.get("username") is not None:
         favourites = list(mongo.db.favourites.find(
@@ -47,7 +47,6 @@ def favourites():
     favourites = list(mongo.db.favourites.find(
         {"username": session["username"]}))
     comics = []
-    # Iterates through favourites list to fill comics list
     for favourite in favourites:
         comic = list(mongo.db.books.find(
             {"comic_name": {"$eq":
@@ -67,18 +66,17 @@ def my_submissions():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    ###
-    # Gathers new user information
-    # and inserts into the users collection.
-    # Also checks if there is a user with the
-    # username the new user wants.
-    ###
+    '''
+    Gathers new user information
+    and inserts into the users collection.
+    Also checks if there is a user with the
+    username the new user wants.
+    '''
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         if existing_user:
             flash("Username has been taken.")
-            # Returns to register page if username exists
             return redirect(url_for("register"))
         new_user = {
             "first_name": request.form.get("first_name").capitalize(),
@@ -89,7 +87,6 @@ def register():
             "password": generate_password_hash(request.form.get("password")),
             "mod": "no"
         }
-        # Successfully adds new user.
         mongo.db.users.insert_one(new_user)
         flash("Registration Complete!")
         return redirect(url_for("home"))
@@ -365,5 +362,5 @@ if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
-        debug=True
+        debug=False
     )

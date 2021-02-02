@@ -6,15 +6,16 @@ Edit Comic
 
 {% block content %}
 
-    <div class="row">
-        <div class="col s12">
-            <h3 class="center-align title">Edit Entry</h3>
-        </div>
-    </div>
+
 
     <!--Edit Comic Form (Prefilled)-->
     <div class="row card-panel">
         <form class="col s12" method="POST" action="{{ url_for('edit_entry', entry_id=comic._id) }}">
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="center-align title">Edit Entry</h3>
+                </div>
+            </div>
             <div class="row">
                 <div class="input-field col s6">
                     <input id="comic_name" name="comic_name" type="text" class="validate" value="{{ comic.comic_name }}"
@@ -47,7 +48,7 @@ Edit Comic
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="comic_description" name="comic_description" class="materialize-textarea">
+                    <textarea id="comic_description" name="comic_description" class="materialize-textarea" required>
                         {{- comic.description -}}
                     </textarea>
                     <label for="comic_description">Comic Synopsis</label>

@@ -6,15 +6,16 @@ New Comic
 
 {% block content %}
 
-    <div class="row">
-        <div class="col s12">
-            <h3 class="center-align title">New Entry</h3>
-        </div>
-    </div>
+
 
     <!--New Comic Form-->
     <div class="row card-panel">
         <form class="col s12" method="POST" action="{{ url_for('new_entry') }}">
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="center-align title">New Entry</h3>
+                </div>
+            </div>
             <div class="row">
                 <div class="input-field col s6">
                     <!--Comic Name-->
@@ -51,7 +52,7 @@ New Comic
             <div class="row">
                 <div class="input-field col s12">
                     <!--Comic Description-->
-                    <textarea id="comic_description" name="comic_description" class="materialize-textarea"></textarea>
+                    <textarea id="comic_description" name="comic_description" class="materialize-textarea" required></textarea>
                     <label for="comic_description">Comic Synopsis</label>
                 </div>
             </div>
