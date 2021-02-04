@@ -29,7 +29,6 @@ def home():
         comics = list(mongo.db.books.find({"$text": {"$search": query}}))
     else:
         comics = list(mongo.db.books.find().sort("_id", -1).limit(12))
-    # Only find favourites if session username exists.
     if session.get("username") is not None:
         favourites = list(mongo.db.favourites.find(
             {"username": session["username"]}))
@@ -57,7 +56,6 @@ def favourites():
 
 @app.route("/my_submissions", methods=["GET", "POST"])
 def my_submissions():
-    # Show only users submissions
     comics = list(mongo.db.books.find({"submitted_by": session["username"]}))
     favourites = list(mongo.db.favourites.find(
         {"username": session["username"]}))
@@ -96,7 +94,6 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # Checks for existing user.
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
         if existing_user:
@@ -106,7 +103,6 @@ def login():
             age = (today.year - dob.year - ((
                 today.month, today.day) < (
                 dob.month, dob.day)))
-            # Checks database password with user input password.
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["username"] = request.form.get("username").lower()
@@ -127,10 +123,6 @@ def login():
 
 
 @app.route("/logout")
-###
-# Removes all session cookies
-# and sets mature filter to "yes"
-##
 def logout():
     flash("You've been logged out.")
     session.pop("username")
@@ -142,11 +134,11 @@ def logout():
 
 @app.route("/add_favourite", methods=["POST"])
 def add_favourite():
-    ###
-    # Retreives AJAX data as json.
-    # Async required to prevent page refreshing
-    # on every favourite entry.
-    ###
+    '''
+    Retreives AJAX data as json.
+    Async required to prevent page refreshing
+    on every favourite entry.
+    '''
     response = request.get_json()
     comic_name = response["comic_name"]
     # Creates favourite object.
@@ -154,25 +146,23 @@ def add_favourite():
         "comic_name": comic_name,
         "username": session["username"]
     }
-    # Inserts new favourite.
     mongo.db.favourites.insert_one(favourite)
     return jsonify(response)
 
 
 @app.route("/delete_favourite", methods=["POST"])
 def delete_favourite():
-    ###
+    '''
     # Similar to add_favourite function
     # but removes the favourite entry from
     # database instead of insert
-    ###
+    '''
     response = request.get_json()
     comic_name = response["comic_name"]
     unfavourite = {
         "comic_name": comic_name,
         "username": session["username"]
     }
-    # Removes favourite.
     mongo.db.favourites.remove(unfavourite)
     return jsonify(response)
 
@@ -226,24 +216,20 @@ def moderator(username):
 @app.route("/change_password/<user_id>", methods=["GET", "POST"])
 def change_password(user_id):
     if request.method == "POST":
-        ###
-        # Allows user to change password,
-        # user must provide old password and new
-        # password as well as confirming new
-        # password by entering twice to confirm.
-        # This is to prevent anyone other than the
-        # user from changing their password.
-        ###
+        '''
+        Allows user to change password,
+        user must provide old password and new
+        password as well as confirming new
+        password by entering twice to confirm.
+        This is to prevent anyone other than the
+        user from changing their password.
+        '''
         new_pass = request.form.get("new_password")
         if check_password_hash(mongo.db.users.find_one(
                 {"_id": ObjectId(user_id)})["password"],
                 request.form.get("old_password")):
             # Checks new password and repeat password.
             if new_pass == request.form.get("repeat_password"):
-                ###
-                # If match then hashes new password and
-                # sets it as the new password.
-                ###
                 mongo.db.users.update_one({"_id": ObjectId(user_id)},
                                           {"$set": {"password":
                                                     generate_password_hash(
@@ -254,9 +240,7 @@ def change_password(user_id):
                 # If new and repeat password don't match.
                 flash("New Password Must Match.")
         else:
-            # If old password is wrong.
             flash("Incorrect Password.")
-    # Fetches user data.
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     return render_template("change_password.html", user=user)
 
@@ -264,11 +248,11 @@ def change_password(user_id):
 @app.route("/new_entry", methods=["POST", "GET"])
 def new_entry():
     if request.method == "POST":
-        ###
-        # Creates new comic entry based on
-        # user input. Also sets mature setting to
-        # new entry.
-        ###
+        '''
+        Creates new comic entry based on
+        user input. Also sets mature setting to
+        new entry.
+        '''
         mature = "yes" if request.form.get("is_mature") else "no"
         new_entry = {
             "comic_name": " ".join(request.form.get(
@@ -282,20 +266,18 @@ def new_entry():
             "submitted_by": session["username"],
             "is_mature": mature
         }
-        # Checks if comic already exists.
         check = list(mongo.db.books.find(
             {"comic_name": new_entry["comic_name"]}))
-        ###
-        # If the check list is not empty then
-        # notifies user that comic already exists.
-        ###
+        '''
+        If the check list is not empty then
+        notifies user that comic already exists.
+        '''
         if check != []:
             flash("Comic Already Exists")
             return redirect(url_for('new_entry'))
         # If check is empty then submits the new comic entry.
         mongo.db.books.insert_one(new_entry)
         flash("Successfully Added New Comic!")
-        # Returns user to home page.
         return redirect(url_for('home'))
     return render_template("new_entry.html")
 
@@ -304,11 +286,11 @@ def new_entry():
 def edit_entry(entry_id):
     comic = mongo.db.books.find_one({"_id": ObjectId(entry_id)})
     if request.method == "POST":
-        ###
+        '''
         # Allows editing of comic entry if the user
         # is either the original poster or has the
         # moderator status.
-        ###
+        '''
         mature = "yes" if request.form.get("is_mature") else "no"
         update_entry = {
             "comic_name": " ".join(request.form.get(
@@ -330,10 +312,10 @@ def edit_entry(entry_id):
 
 @app.route("/delete_comic/<entry_id>")
 def delete_comic(entry_id):
-    ###
-    # Deletes comic entry, only available to
-    # original poster or moderator.
-    ###
+    '''
+    Deletes comic entry, only available to
+    original poster or moderator.
+    '''
     mongo.db.books.remove({"_id": ObjectId(entry_id)})
     flash("Comic Deleted")
     return redirect(url_for("home"))
@@ -341,18 +323,15 @@ def delete_comic(entry_id):
 
 @app.route("/<comic_name>/<entry_id>")
 def more_info(entry_id, comic_name):
-    # Searches for specified comic data.
     comic = mongo.db.books.find_one({"_id": ObjectId(entry_id)})
     return render_template("comic.html", comic=comic)
 
 
-# Renders contact page.
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
 
 
-# If a 404 error then loads 404 page.
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404

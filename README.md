@@ -9,13 +9,12 @@
 A site designed for use by anyone that is enthusiastic about reading, sharing and finding comic books.
 The website contains comics from a variety of genres. 
 The website features a gallery of various comic books with search function, user registration, comic book editting,
-the ability to favourite comics, an about page and a contact page. 
+the ability to favourite comics and a contact page. 
 The primary goal of the website is to create a large collection of various comic books for a wide user base. 
 
 ## UX
 
 The ideal user for this site is:
-- Interested in comic books.
 - Interested in sharing and recommending comic books they have read.
 - Interested in searching for new comics to read.
 - English speaking.
@@ -23,11 +22,13 @@ The ideal user for this site is:
 Visitors to the site are looking for:
 - A place to return to for suggestions on the next comic book to read.
 - The ability to make new entries on comics that may not be already on the site.
+- The ability to favourite comics they are interested in reading, so they can easily find them in the future. 
 
 The website should be:
 - Easy to navigate.
 - Have a simple registration and log in.
 - Able to search through a collection of comics to find specific ones.
+- Able to moderate content added to the site. 
 
 ### User Stories
 
@@ -35,7 +36,7 @@ The website should be:
 
 1. As a new visitor, I want to be able to navigate the site with ease.
 2. As a new visitor, I want to be able to use the site before registering, 
-   and still be able to use most features so that I make a informed decision on whether to sign up. 
+   and still be able to use most features, so that I make a informed decision on whether to sign up. 
 3. As a new visitor, I want to be able to sign up easily and get started browsing.
 
 #### Returning User
@@ -53,7 +54,7 @@ The website should be:
 
 - Colour Scheme
     - The colour scheme for the site was based on the [Spider-Man](https://www.behance.net/gallery/18419415/Comic-Books-Color-Palettes) colour 
-      pallete found while looking on Google.
+      pallete, which was found while searching on Google.
 
 - Imagery
     - The images used throughout the site are chosen to appeal to comic book readers and people with an interest in superhero comics.
@@ -72,10 +73,10 @@ navbar and also redirects users to the home page.
 #### Home Page
 
 The Home page is the main page of the site and features a full gallery of all user submitted comics. 
-Some comics with mature content are omitted for users under the age of 16, or if not logged in.
- The home page also contains a search bar for users to find comics based on
+Some comics with mature content are omitted for users under the age of 16 and for users not logged in.
+The home page also contains a search bar for users to find comics based on
 the comics name, description, author or genre. The page also allows the user to see more about individual comics and redirect them to a
-site where they may purchase the book if interested.
+site where they may purchase the comic if interested.
 
 The Home page allows signed in users to favourite/unfavourite comics by clicking the heart button next to each comic image.
 
@@ -83,8 +84,10 @@ A comic entry will have management options if the user is a moderator or the one
 
 #### Profile Page
 
-The Profile Page allows users to change any relevant information about themselves through the edit profile button or the change password button.
-The page also allows users to look at the profile of a user who submitted a comic. Moderators are able to grant mod status to non moderator users.
+The Profile Page allows users to view/change any relevant information about themselves through the edit profile button or the change password button.
+Moderators are able to grant mod status to non moderator users.
+It is also possible to view the profile page of users that have submitted comics. 
+If you click on the username visible when looking at the added comic, it will bring you to that users profile page. 
 
 #### New/Edit Entry Page
 
@@ -106,7 +109,6 @@ If the inputted comic already exists, the user will be notified after clicking o
 This page only displays submissions made by the logged in user. 
 Similar to the Home page it displays a gallery of the submitted comics by the user. 
 The comics on the Submission page can be favourited, deleted or edited. 
-There is also a more info button which directs the user to another page, providing more information and a synopsis of the comic book.
 A search bar is also available, similar to the Home Page, where users can search for comics based on the comics name, description, author or genre.
 
 #### Favourites Page
@@ -114,15 +116,11 @@ A search bar is also available, similar to the Home Page, where users can search
 This page is similar in apperance to the Submission/Home page. 
 Any comics that have been favourited, 
 by clicking on the 'heart' button, appear in the gallery on the Favourites page. Comics can be favouited from either the Home or Submission pages.  
-All the same features for deleting/editing are availalbe if the comic was submitted by the logged in user, or if the user is a moderator. 
+Deleting/editing is availalbe if the comic was submitted by the logged in user, or if the user is a moderator. 
 It is possible to remove any comics from the favourite page by clicking on the 'heart' button. 
-As mentioned before there is a more info and buy (for purchasing) buttons, both identical to those on the Home and Submission pages. 
-A search bar is also included as on the Home/Submission page.
+A buy button takes you to a site for purchasing the comic, as on the Home and Submission pages. 
+A search bar is also included as on the Home and Submission pages.
 
-#### About Page
-
-The About page features two large images on the top and bottom of the page, depicting characters from Marvel and DC comics. 
-The About page contains a brief description of the purpose and creator of the site.
 
 #### Contact Page
 
@@ -134,7 +132,7 @@ The Contact page features a contact form, which requests the following informati
 
 There is a submit button on the bottom of the page, which allows the user to send their message after completing the form. 
 If any of the above inputs are empty, after clicking submit, the message will not be sent,
- and the user is notified of the required information that was not input. 
+and the user is notified of the required information that was missing. 
 
 #### Register Page
 
@@ -177,24 +175,22 @@ It contains a button that redirects users to the Home page.
 - Mature filter, Filters content for users under 16.
 - Card gallery, Displays all available comics in the collection.
 - New entry form, Allows users to submit their own comic suggestions.
-- About page, Lets users know more about the site.
 - Profile page, Allows users to edit their own information.
 - Comic page, Displays more information on a chosen comic.
-- Favourite/Unfavourite button and page, Users are able to favourite and unfavourite comics and view them
-    on a seperate page.
+- Favourite/Unfavourite button and page, Users are able to favourite and unfavourite comics and view them on a seperate page.
 - Contact page, For users that would like to message the creator of the site.
 - Registration form, Allowing users to easily sign up to the site.
 - Edit and delete function for comics, Allows users to edit and delete their submissions.
-- Moderator system, Allows users to become Moderators in order to monitor submissions for inappropriate content.
+- Moderator system, Allows users to become Moderators in order to monitor/edit/delete submissions. 
 - 404 error handling, To redirect user back to the Home page if they try accessing other non existing pages.
 
 ### Features to add in the future.
 
-- Rating system, For all users to rate comic entries to show more popular ones.
+- Rating system, For all users to rate comic entries so they can be ranked by rating/popularity.
 - Live chat, For users to communicate with each other.
 - Language options, To allow a broader range of users to the site.
-- CAPTCHA to new and edit entry form and contact form, To reduce spam sent on the contact form and new comics that are added.
-- Users page to display all signed up users for moderators to easily access the users profile page.
+- CAPTCHA to new/edit entry form and contact form, To reduce spam sent on the contact form and new comics that are added.
+- A page that displays all current signed up users, where moderators can easily access the different users profile pages.
 
 
 ## Technologies used (Frameworks, Libraries, Languages and Programs used)
@@ -283,3 +279,17 @@ Your app should be deployed and a link will be available to view it.
         mongodb+srv://<username>:<password>@<clustername>.vv32m.mongodb.net/<dbname>?retryWrites=true&w=majority
 
 - Your MongoDB database will require to be set up with 3 collections(books, users and favourites.)
+
+## Credits
+
+### Media
+
+- Comic images and logo taken from searching on Google images.
+- Each comic is user submission.
+
+### Aknowledgements
+
+- [This](https://stackoverflow.com/questions/52199280/how-to-set-jquery-ajax-post-data) post on StackOverflow for the suggestion of using async call to send data to backend without refreshing page.
+- [This](https://www.geeksforgeeks.org/python-program-to-calculate-age-in-year/) article on how to work out age in python to enable the maturity filter.
+- My wife for help in design and support.
+- My mentor for the support through the project.
