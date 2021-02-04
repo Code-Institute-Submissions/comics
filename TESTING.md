@@ -110,6 +110,11 @@ Expanded from [README](https://github.com/bob134552/comics/blob/master/README.md
     2. The user will be notified of a incorrect input if there is one by highlighting the specified field.
     3. Cancelling brings the user to their profile page.
 
+8. Contact form
+    1. The contact form requires the users name, email, subject and message in order to send the email.
+    2. After a successful send the button is disabled until the email is sent, if the email is sent the user is notified with the text in the button changing 
+        from "Submit" to "Sent!" otherwise the text in the button changes to "Try again later" on a unsuccessful send.
+
 ### Problems and Bugs
 
 - Intially on the registration and change details form the datepicker input could accept any string as you could type into the input by holding down the mouse after clicking on it,

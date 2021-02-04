@@ -120,8 +120,8 @@ Home
                             <div class="card-action center-align">
                                 <!--If user is the creator or a moderator, shows delete and edit buttons-->
                                 {% if session.username == comic.submitted_by or session.moderator == "yes" %}
-                                    <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn btn-small">Delete</a>
-                                    <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
+                                    <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn btn-small"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green"><i class="fas fa-edit"></i></a>
                                 <!--Otherwise shows only buy and more info buttons-->
                                 {% endif %}
                                     <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
@@ -183,8 +183,8 @@ Home
                             </p>
                             <div class="card-action center-align">
                                 {% if session.username == comic.submitted_by or session.moderator == "yes" %}
-                                    <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn btn-small">Delete</a>
-                                    <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">Edit</a>
+                                    <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn btn-small"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green"><i class="fas fa-edit"></i></a>
                                 {% endif %}
                                 <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
                             </div>

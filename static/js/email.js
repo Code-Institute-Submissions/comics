@@ -1,4 +1,5 @@
 function sendMail(contactForm) {
+    document.getElementById("submitbutton").disabled = true;
     emailjs
         .send("gmail", "comics", {
             from_name: contactForm.name.value,
@@ -13,7 +14,7 @@ function sendMail(contactForm) {
                 let load = document.getElementById("submitbutton").innerHTML;
                 let done = load.replace("Submit", "Sent!");
                 document.getElementById("submitbutton").innerHTML = done;
-                document.getElementById("submitbutton").disabled = true;
+                document.getElementById("submitbutton").disabled = false;
                 document.getElementById("contact").reset();
             },
             //If email doesn't send.
@@ -22,6 +23,7 @@ function sendMail(contactForm) {
                 let load = document.getElementById("submitbutton").innerHTML;
                 let fail = load.replace("Submit", "Try Again Later");
                 document.getElementById("submitbutton").innerHTML = fail;
+                document.getElementById("submitbutton").disabled = false;
             }
         );
 
