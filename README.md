@@ -86,7 +86,7 @@ A comic entry will have management options if the user is a moderator or the one
 
 The Profile Page allows users to view/change any relevant information about themselves through the edit profile button or the change password button.
 Moderators are able to grant mod status to non moderator users.
-It is also possible to view the profile page of users that have submitted comics. 
+It is also possible to view the profile page of users(excluding their Email Address) that have submitted comics. 
 If you click on the username visible when looking at the added comic, it will bring you to that users profile page. 
 
 #### New/Edit Entry Page

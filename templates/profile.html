@@ -25,16 +25,18 @@ Profile
                     <input disabled value="{{ user.dob }}" id="dob" type="text">
                     <label for="dob">Date of Birth</label>
                 </div>
-                <div class="input-field col s12">
-                    <input disabled value="{{ user.email}}" id="email" type="text">
-                    <label for="email">Email</label>
-                </div>
+                {% if session.username == user.username %}
+                    <div class="input-field col s12">
+                        <input disabled value="{{ user.email}}" id="email" type="text">
+                        <label for="email">Email</label>
+                    </div>
+                {% endif %}
                 <div class="input-field col s12">
                     <input disabled value="{{ user.username }}" id="username" type="text">
                     <label for="username">Username</label>
                 </div>
             </div>
-            {% if session.username%}
+            {% if session.username %}
                 <!--Allows moderators to grant moderator status to others-->
                 {% if session.moderator == "yes" %}
                     <form class="center-align" method="POST" action="{{ url_for('moderator', username=user.username) }}">
