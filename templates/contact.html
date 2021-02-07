@@ -1,62 +1,63 @@
 {% extends "index.html" %}
 {% block styles %}
-<!--Script for emailjs-->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-<script type="text/javascript">
-    (function () {
-        emailjs.init("user_f8CwBmyJmtHsNlSmabfrz");
-    })();
-</script>
+    <!--Script for emailjs-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_f8CwBmyJmtHsNlSmabfrz");
+        })();
+    </script>
 {% endblock %}
 
 {% block title %}
-Contact Us
+    Contact Us
 {% endblock %}
 
 {% block content %}
 
-<!--Email Form-->
-<div class="row card">
-    <form class="col s12" onsubmit="return sendMail(this);" id="contact">
-        <div class="row">
-            <div class="col s12">
-                <h3 class="center-align title">Contact Us</h3>
+    <!--Email Form-->
+    <div class="row card">
+        <form class="col s12" onsubmit="return sendMail(this);" id="contact">
+            <div class="row">
+                <div class="col s12">
+                    <h3 class="center-align title">Contact Us</h3>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <!--Name-->
-            <div class="input-field col s6">
-                <input id="name" name="name" type="text" required>
-                <label for="name">Name</label>
+            <div class="row">
+                <!--Name-->
+                <div class="input-field col s6">
+                    <input id="name" name="name" type="text" required>
+                    <label for="name">Name</label>
+                </div>
+                <!--Email Address-->
+                <div class="input-field col s6">
+                    <input id="email" name="email" type="email" required>
+                    <label for="email">Email Address</label>
+                </div>
+                <!--Subject-->
+                <div class="input-field col s12">
+                    <input id="subject" name="subject" type="text" required>
+                    <label for="subject">Subject</label>
+                </div>
             </div>
-            <!--Email Address-->
-            <div class="input-field col s6">
-                <input id="email" name="email" type="email" required>
-                <label for="email">Email Address</label>
+            <!--Message-->
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="message" name="message" class="materialize-textarea" required></textarea>
+                    <label for="message">Message</label>
+                </div>
             </div>
-            <!--Subject-->
-            <div class="input-field col s12">
-                <input id="subject" name="subject" type="text" required>
-                <label for="subject">Subject</label>
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button class="btn waves-effect waves-light light-green" type="submit" name="submitbutton"
+                        id="submitbutton">Submit <i class="fas fa-envelope-open-text"></i></button></div>
             </div>
-        </div>
-        <!--Message-->
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="message" name="message" class="materialize-textarea" required></textarea>
-                <label for="message">Message</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 center-align">
-                <button class="btn waves-effect waves-light" type="submit" name="submitbutton"
-                    id="submitbutton">Submit</button></div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+
 {% endblock %}
 
 {% block scripts %}
-<!--Additional Script for emailjs-->
-<script src="{{ url_for('static', filename='js/email.js') }}"></script>
+    <!--Additional Script for emailjs-->
+    <script src="{{ url_for('static', filename='js/email.js') }}"></script>
 {% endblock %}

@@ -1,37 +1,47 @@
 {% extends "index.html" %}
 
 {% block title %}
-{{ comic.comic_name }}
+    {{ comic.comic_name }}
 {% endblock %}
 
 {% block content %}
 
-<!--Comic Page on selected comic.-->
-<div class="row comic-page">
-    <div class="col m5 s12">
-        <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}" class="comic-image">
-    </div>
-    <div class="col m7 s12 center-align content">
-        <h3><strong>
-                {{ comic.comic_name }}
-            </strong></h3>
-        <p>
-            Created by:<br> {{ comic.author }}
+    <!--Comic Page on selected comic.-->
+    <div class="row comic-page">
+        <div class="col m5 s12">
+            <img src="{{ comic.comic_image }}" alt="{{ comic.comic_name }}" class="comic-image">
+        </div>
+        <div class="col m7 s12 center-align content">
+            <h3><strong>
+                    {{ comic.comic_name }}
+                </strong>
+            </h3>
+            <p>
+                Created by:<br> {{ comic.author }}
+                <br>
+                Genre: {{ comic.genre }}
+                <br>
+            </p>
+            <h5>
+                About
+            </h5>
+            <p>{{ comic.description }}</p>
             <br>
-            Genre: {{ comic.genre }}
-            <br>
-        </p>
-        <h5>About</h5>
-        <p>{{ comic.description }}</p>
-        <br>
-        <p>Submitted by: <a href="{{ url_for('profile', username=comic.submitted_by) }}">{{ comic.submitted_by }}</a></p>
-        <div class="col s12">
-            {% if session.username == comic.submitted_by or session.moderator == "yes" %}
-                <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn btn-small"><i class="fas fa-trash-alt"></i></a>
-                <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green"><i class="fas fa-edit"></i></a>
-            {% endif %}
-                <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1">Buy</a>
+            <p>
+                Submitted by: <a href="{{ url_for('profile', username=comic.submitted_by) }}">{{ comic.submitted_by }}</a>
+            </p>
+            <div class="col s12">
+                {% if session.username == comic.submitted_by or session.moderator == "yes" %}
+                    <a href="{{ url_for('delete_comic', entry_id=comic._id) }}" class="red btn btn-small">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <a href="{{ url_for('edit_entry', entry_id=comic._id)}}" class="btn btn-small green">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                {% endif %}
+                    <a href="{{ comic.buy_from }}" class="btn btn-small indigo lighten-1" target="_blank">Buy</a>
+            </div>
         </div>
     </div>
 
-    {% endblock %}
+{% endblock %}

@@ -1,6 +1,6 @@
-# Testing section
+Expanded from [README.md](https://github.com/bob134552/comics/blob/master/README.md)
 
-Expanded from [README](https://github.com/bob134552/comics/blob/master/README.md)
+# Testing section
 
 The site was tested on desktop using Google Chrome.
 It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung Tab A and iPhone 11.
@@ -44,8 +44,8 @@ It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung T
 2. As a returning user, I want to provide my own entries to the collection.
 
     1. After the user has logged in they are given the option to add more comics to the collection through a callout button
-        or through the navigation bar link for New Entry.
-    2. Clicking on either button or navigation link brings the user to the New Entry page which asks the user to fill in a form for 
+        or through the navigation bar link for New Comic.
+    2. Clicking on either button or navigation link brings the user to the New Comic page which asks the user to fill in a form for 
         the details of the new comic.
     3. If a comic already exists the user will be notified and it will not be added.
 
@@ -77,7 +77,7 @@ It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung T
 
 1. Call to Action button
     1. Clicking button when not signed in redirects user to Registration page.
-    2. Clicking button when logged in redirects user to New Entry page.
+    2. Clicking button when logged in redirects user to New Comic page.
 
 2. Registration form
     1. If any inputs are incorrect or left empty the input will become underlined in red to notify the user.
@@ -105,8 +105,8 @@ It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung T
     2. The links available are varied depending if user is logged in or not.  
     <img src="/static/images/logged-out.jpg" alt="logged-out-links">  <img src="/static/images/logged-in.jpg" alt="logged-in-links">
 
-6. New entry and edit entry form.
-    1. The edit entry form is a prefilled version of the new entry form.
+6. New Comic and edit entry form.
+    1. The edit entry form is a prefilled version of the New Comic form.
     2. Attempting to submit if any inputs are blank will notify the user of missing data.
     3. Both the comic image and store link are required to be in http or https format.
     <img src="/static/images/new-edit-form.jpg" alt="new/eidt-form">
@@ -140,3 +140,4 @@ It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung T
     causing the favourite button to not work.
 - Jinja2 loop controls had to be added to allow the use of continue and break, to allow some templating logic to work.
 - To prevent the page from refreshing every time a comic was favourited, custom JavaScript functions were written in script.js to allow for an asynchronous call to the favourites database without refreshing the page.
+- Depending on a users connection speeds some images may take longer to load than others.

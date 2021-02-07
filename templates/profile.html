@@ -1,12 +1,11 @@
 {% extends "index.html" %}
 
 {% block title %}
-Profile
+{{ user.username }}'s Profile
 {% endblock %}
 
 
 {% block content %}
-
 
     <!--Profile Details-->
     <div class="row">
@@ -65,7 +64,6 @@ Profile
                 {% endif %}
             {% endif %}
         </div>
-
     </div>
 
 {% endblock %}

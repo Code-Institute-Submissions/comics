@@ -169,12 +169,12 @@ It contains a button that redirects users to the Home page.
 
 ### Existing Features
 
-- Callout button for both users and new visitors, Allows new visitors to register and users to go to new entry page.
+- Callout button for both users and new visitors, Allows new visitors to register and users to go to New Comic page.
 - Navbar logo on all pages, Allows users to return to the home page.
 - Search bar, allows users to search comic book collection.
 - Mature filter, Filters content for users under 16.
 - Card gallery, Displays all available comics in the collection.
-- New entry form, Allows users to submit their own comic suggestions.
+- New Comic form, Allows users to submit their own comic suggestions.
 - Profile page, Allows users to edit their own information.
 - Comic page, Displays more information on a chosen comic.
 - Favourite/Unfavourite button and page, Users are able to favourite and unfavourite comics and view them on a seperate page.
@@ -183,6 +183,7 @@ It contains a button that redirects users to the Home page.
 - Edit and delete function for comics, Allows users to edit and delete their submissions.
 - Moderator system, Allows users to become Moderators in order to monitor/edit/delete submissions. 
 - 404 error handling, To redirect user back to the Home page if they try accessing other non existing pages.
+- Defensive code to prevent users that are not logged in from accessing user only features(such as favourites, my submissions and new comic pages).
 
 ### Features to add in the future.
 
@@ -191,7 +192,7 @@ It contains a button that redirects users to the Home page.
 - Language options, To allow a broader range of users to the site.
 - CAPTCHA to new/edit entry form and contact form, To reduce spam sent on the contact form and new comics that are added.
 - A page that displays all current signed up users, where moderators can easily access the different users profile pages.
-
+- The ability to let users upload their own comic images instead of an image link.
 
 ## Technologies used (Frameworks, Libraries, Languages and Programs used)
 

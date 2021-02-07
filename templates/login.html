@@ -6,7 +6,6 @@ Log In
 
 {% block content %}
 
-
     <!--Login Form with link at bottom to redirect to registration form if user is new-->
     <div class="row card-panel">
         <form class="col s12" method="POST" action="{{ url_for('login') }}">
@@ -37,7 +36,6 @@ Log In
             </div>
         </form>
         <h6 class="center-align"><a href="{{ url_for('register') }}">Not Registered Yet?</a></h6>
-        
     </div>
 
 {% endblock %}

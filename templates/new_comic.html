@@ -1,19 +1,17 @@
 {% extends "index.html" %}
 
 {% block title %}
-New Comic
+    New Comic
 {% endblock %}
 
 {% block content %}
 
-
-
     <!--New Comic Form-->
     <div class="row card-panel">
-        <form class="col s12" method="POST" action="{{ url_for('new_entry') }}">
+        <form class="col s12" method="POST" action="{{ url_for('new_comic') }}">
             <div class="row">
                 <div class="col s12">
-                    <h3 class="center-align title">New Entry</h3>
+                    <h3 class="center-align title">New Comic</h3>
                 </div>
             </div>
             <div class="row">

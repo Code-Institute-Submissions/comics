@@ -64,6 +64,22 @@ body {
   color: aquamarine;
 }
 
+.submit {
+    background-color: #039be5;
+}
+
+.submit:hover {
+    background-color: blueviolet;
+}
+
+.cancel {
+    background-color: #F44336;
+}
+
+.cancel:hover {
+    background-color: darkred;
+}
+
 /*Logo, images and icons*/
 .card-image img {
   height: 500px;
@@ -117,6 +133,10 @@ body {
 .subscribe {
   border-radius: 15px;
   background-color: #902724;
+}
+
+.subscribe:hover {
+    background-color: #f23c27;
 }
 
 /*Card*/
