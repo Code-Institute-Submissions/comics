@@ -23,8 +23,8 @@ function addFavourite(comic_name) {
         url: '/add_favourite'
     })
         .done(function () {
-            $(`button[id="${comic_name}"]`).children("i").addClass("fas").removeClass("far");
-            $(`button[id="${comic_name}"]`).attr("onclick", "deleteFavourite(this.id);").addClass("unfavourite").removeClass("favourite");
+            $(`button[id="${comic_name}"] > i`).toggleClass("fas far");
+            $(`button[id="${comic_name}"]`).attr("onclick", "deleteFavourite(this.id);").toggleClass("unfavourite favourite");
         })
 }
 
@@ -37,7 +37,7 @@ function deleteFavourite(comic_name) {
         url: '/delete_favourite'
     })
         .done(function () {
-            $(`button[id="${comic_name}"]`).children("i").addClass("far").removeClass("fas");
-            $(`button[id="${comic_name}"]`).attr("onclick", "addFavourite(this.id);").addClass("favourite").removeClass("unfavourite");
+            $(`button[id="${comic_name}"] > i`).toggleClass("fas far");
+            $(`button[id="${comic_name}"]`).attr("onclick", "addFavourite(this.id);").toggleClass("unfavourite favourite");
         })
 }
