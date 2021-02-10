@@ -6,6 +6,8 @@
 
 <img src="/static/images/responsive-mockup.jpg" alt="responsive-mockup">
 
+The live site can be found [here](https://comic-box-msp3.herokuapp.com/).
+
 A site designed for use by anyone that is enthusiastic about reading, sharing and finding comic books.
 The website contains comics from a variety of genres. 
 The website features a gallery of various comic books with search function, user registration, comic book editing,
