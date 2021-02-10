@@ -170,10 +170,6 @@ body {
   padding: 30px;
 }
 
-.hide {
-  display: none;
-}
-
 .no-wrap {
   white-space: nowrap;
   overflow: hidden;

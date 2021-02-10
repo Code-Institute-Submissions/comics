@@ -13,6 +13,7 @@ $(document).ready(function () {
     $('.modal').modal();
 });
 
+
 // Sends data to app.py through ajax to add favourites.
 function addFavourite(comic_name) {
     $.ajax({
@@ -22,8 +23,8 @@ function addFavourite(comic_name) {
         url: '/add_favourite'
     })
         .done(function () {
-            $(`button.favourite[id="${comic_name}"]`).addClass("hide");
-            $(`button.unfavourite[id="${comic_name}"]`).removeClass("hide");
+            $(`button[id="${comic_name}"]`).children("i").addClass("fas").removeClass("far");
+            $(`button[id="${comic_name}"]`).attr("onclick", "deleteFavourite(this.id);").addClass("unfavourite").removeClass("favourite");
         })
 }
 
@@ -36,7 +37,7 @@ function deleteFavourite(comic_name) {
         url: '/delete_favourite'
     })
         .done(function () {
-            $(`button.unfavourite[id="${comic_name}"]`).addClass("hide");
-            $(`button.favourite[id="${comic_name}"]`).removeClass("hide");
+            $(`button[id="${comic_name}"]`).children("i").addClass("far").removeClass("fas");
+            $(`button[id="${comic_name}"]`).attr("onclick", "addFavourite(this.id);").addClass("favourite").removeClass("unfavourite");
         })
 }
