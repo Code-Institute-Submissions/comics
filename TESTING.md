@@ -5,8 +5,8 @@ Expanded from [README.md](https://github.com/bob134552/comics/blob/master/README
 The site was tested on desktop using Google Chrome.
 It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung Tab A and iPhone 11.
 
-[W3C CSS Validator](https://jigsaw.w3.org/css-validator/) was used to ensure there was no errors in style.css.
-[W3C HTML Validator](https://validator.w3.org/) was used to check for errors in all templates, any error left is due to jinja2 templating.
+[W3C CSS Validator](https://jigsaw.w3.org/css-validator/) was used to ensure there was no errors in style.css.  
+[W3C HTML Validator](https://validator.w3.org/) was used to check for errors in all templates, any error left is due to jinja2 templating.  
 [PEP8 online check](http://pep8online.com/) was used to check for errors in the code for app.py. 
 
 ### Manual Testing Based On User Stories.
