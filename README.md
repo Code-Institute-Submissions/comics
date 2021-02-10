@@ -8,8 +8,8 @@
 
 A site designed for use by anyone that is enthusiastic about reading, sharing and finding comic books.
 The website contains comics from a variety of genres. 
-The website features a gallery of various comic books with search function, user registration, comic book editting,
-the ability to favourite comics and a contact page. 
+The website features a gallery of various comic books with search function, user registration, comic book editing,
+the ability to favourite comics and a contact page. editing
 The primary goal of the website is to create a large collection of various comic books for a wide user base. 
 
 ## UX
@@ -36,10 +36,11 @@ The website should be:
 
 1. As a new visitor, I want to be able to navigate the site with ease.
 2. As a new visitor, I want to be able to use the site before registering, 
-   and still be able to use most features, so that I make a informed decision on whether to sign up. 
+   and still be able to use most features, so that I make an informed decision on whether to sign up. 
 3. As a new visitor, I want to be able to sign up easily and get started browsing.
 
 #### Returning User
+
 1. As a returning user, I want to be able to favourite comics to know which ones I am interested in.
 2. As a returning user, I want to provide my own entries to the collection.
 3. As a returning user, I want to be able to edit my details should they change.
@@ -67,7 +68,7 @@ The website should be:
 
 ## Features
 
-Every page features a responsive navigation bar(navbar) containing relevant links depending on who is using the site. The site logo which sits at the left of the
+Every page features a responsive navigation bar (navbar) containing relevant links depending on who is using the site. The site logo which sits at the left of the
 navbar and also redirects users to the home page.
 
 #### Home Page
@@ -80,13 +81,13 @@ site where they may purchase the comic if interested.
 
 The Home page allows signed in users to favourite/unfavourite comics by clicking the heart button next to each comic image.
 
-A comic entry will have management options if the user is a moderator or the one who submitted the comic(Edit and delete).
+A comic entry will have management options if the user is a moderator or the one who submitted the comic (Edit and delete).
 
 #### Profile Page
 
 The Profile Page allows users to view/change any relevant information about themselves through the edit profile button or the change password button.
-Moderators are able to grant mod status to non moderator users.
-It is also possible to view the profile page of users(excluding their Email Address) that have submitted comics. 
+Moderators are able to grant mod status to non-moderator users.
+It is also possible to view the profile page of users (excluding their Email Address) that have submitted comics. 
 If you click on the username visible when looking at the added comic, it will bring you to that users profile page. 
 
 #### New/Edit Entry Page
@@ -113,10 +114,10 @@ A search bar is also available, similar to the Home Page, where users can search
 
 #### Favourites Page
 
-This page is similar in apperance to the Submission/Home page. 
+This page is similar in appearance to the Submission/Home page. 
 Any comics that have been favourited, 
-by clicking on the 'heart' button, appear in the gallery on the Favourites page. Comics can be favouited from either the Home or Submission pages.  
-Deleting/editing is availalbe if the comic was submitted by the logged in user, or if the user is a moderator. 
+by clicking on the 'heart' button, appear in the gallery on the Favourites page. Comics can be favourited from either the Home or Submission pages.  
+Deleting/editing is available if the comic was submitted by the logged in user, or if the user is a moderator. 
 It is possible to remove any comics from the favourite page by clicking on the 'heart' button. 
 A buy button takes you to a site for purchasing the comic, as on the Home and Submission pages. 
 A search bar is also included as on the Home and Submission pages.
@@ -148,7 +149,7 @@ The register page featres a registration form, which requires the following info
 - Password
 
 A submit button at the bottom of the registration form allows the user to input the information to the database. 
-On the registration form if any field is left empty/incorrectly filled, a red line appears underneath the inccorect information.
+On the registration form if any field is left empty/incorrectly filled, a red line appears underneath the incorect information.
 Additionally, the form cannot be submitted unless all fields are correctly filled. 
 The user is notified of the missing inforation if they click on the submit button before all fields are correctly filled. 
 If the inputted username is already taken, the user will be notified after clicking on the submit button, so that they can pick a different username.
@@ -177,7 +178,7 @@ It contains a button that redirects users to the Home page.
 - New Comic form, Allows users to submit their own comic suggestions.
 - Profile page, Allows users to edit their own information.
 - Comic page, Displays more information on a chosen comic.
-- Favourite/Unfavourite button and page, Users are able to favourite and unfavourite comics and view them on a seperate page.
+- Favourite/Unfavourite button and page, Users are able to favourite and unfavourite comics and view them on a separate page.
 - Contact page, For users that would like to message the creator of the site.
 - Registration form, Allowing users to easily sign up to the site.
 - Edit and delete function for comics, Allows users to edit and delete their submissions.
@@ -205,7 +206,7 @@ It contains a button that redirects users to the Home page.
 - [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
     - To write and handle back end functions for the site.
 - [Jinja2](https://en.wikipedia.org/wiki/Jinja_(template_engine))
-    - To help with creating the html pages through the site.
+    - To help with creating the HTML pages through the site.
 - [jQuery](https://en.wikipedia.org/wiki/JQuery)
     - Allows for easier DOM manipulation.
 - [Materialize](https://materializecss.com/)
@@ -288,9 +289,10 @@ Your app should be deployed and a link will be available to view it.
 - Comic images and logo taken from searching on Google images.
 - Each comic is user submission.
 
-### Aknowledgements
+### Acknowledgements
 
-- [This](https://stackoverflow.com/questions/52199280/how-to-set-jquery-ajax-post-data) post on StackOverflow for the suggestion of using async call to send data to backend without refreshing page.
-- [This](https://www.geeksforgeeks.org/python-program-to-calculate-age-in-year/) article on how to work out age in python to enable the maturity filter.
+- [This](https://stackoverflow.com/questions/52199280/how-to-set-jquery-ajax-post-data) post on StackOverflow for the suggestion of using async call to send data to back end without refreshing page.
+- [This](https://www.geeksforgeeks.org/python-program-to-calculate-age-in-year/) article on how to work out age in Python to enable the maturity filter.
 - My wife for help in design and support.
-- My mentor for the support through the project.
+- My mentor for the support throughout the project.
+- My parents for grammar and spell checking my README and TESTING.

@@ -6,7 +6,7 @@ The site was tested on desktop using Google Chrome.
 It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung Tab A and iPhone 11.
 
 [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) was used to ensure there was no errors in style.css.
-[W3C HTML Validator](https://validator.w3.org/) was used to check for errors in all templates.
+[W3C HTML Validator](https://validator.w3.org/) was used to check for errors in all templates, any error left is due to jinja2 templating.
 [PEP8 online check](http://pep8online.com/) was used to check for errors in the code for app.py. 
 
 ### Manual Testing Based On User Stories.
@@ -81,35 +81,35 @@ It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung T
 
 2. Registration form
     1. If any inputs are incorrect or left empty the input will become underlined in red to notify the user.
-    <img src="/static/images/registration-form.jpg" alt="registration-form">
+    <img src="/static/images/testing/registration-form.jpg" alt="registration-form">
     The user will also be given helpful hints for some incorrect fields, like the password input.
 
     2. If the user tries to create a profile with a username that already exists, a flash message will notify them.
-    <img src="/static/images/registration-user.jpg">
+    <img src="/static/images/testing/registration-user.jpg">
 
 3. Log In form
     1. If the username or password is input incorrectly the user is notified.
-    <img src="/static/images/login-test.jpg" alt="test-login">
+    <img src="/static/images/testing/login-test.jpg" alt="test-login">
     2. If both username and password are correct the user will be logged into their account.
 
 4. Search bar
     1. The Search bar allows users to look for comics by name, author, genre or synopsis.
     2. If there is no match the user is notified that what they are searching for yields no results.
-    <img src="/static/images/no-results.jpg" alt="no-results">
+    <img src="/static/images/testing/no-results.jpg" alt="no-results">
     3. If a match is found the comic will be displayed.
-    <img src="/static/images/search.jpg" alt="result">
+    <img src="/static/images/testing/search.jpg" alt="result">
 
 5. Navigation bar
     1. When in mobile view the navigation links are hidden and a sidenav is available to the user through the navbar toggler.  
-    <img src="/static/images/toggler1.jpg">   <img src="/static/images/toggler2.jpg">  
+    <img src="/static/images/testing/toggler1.jpg">   <img src="/static/images/testing/toggler2.jpg">  
     2. The links available are varied depending if user is logged in or not.  
-    <img src="/static/images/logged-out.jpg" alt="logged-out-links">  <img src="/static/images/logged-in.jpg" alt="logged-in-links">
+    <img src="/static/images/testing/logged-out.jpg" alt="logged-out-links">  <img src="/static/images/testing/logged-in.jpg" alt="logged-in-links">
 
 6. New Comic and edit entry form.
     1. The edit entry form is a prefilled version of the New Comic form.
     2. Attempting to submit if any inputs are blank will notify the user of missing data.
     3. Both the comic image and store link are required to be in http or https format.
-    <img src="/static/images/new-edit-form.jpg" alt="new/eidt-form">
+    <img src="/static/images/testing/new-edit-form.jpg" alt="new/eidt-form">
     4. Cancelling from the Edit entry form returns users to the comic they were editting.
 
 7. Edit Profile form
@@ -121,13 +121,15 @@ It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung T
     1. The contact form requires the users name, email, subject and message in order to send the email.
     2. After a successful send the button is disabled until the email is sent. If the email is sent the user is notified with the text in the button changing 
         from "Submit" to "Sent!". Otherwise the text in the button changes to "Try again later" on a unsuccessful send.
+    <img src="/static/images/testing/test-mail2.jpg" alt="contact-page">
+    <img src="/static/images/testing/test-mail1.jpg" alt="received-mail">
 
 ### Problems and Bugs
 
 - Intially on the registration and change details form, the datepicker input could accept any string. It was possible to type into the input by holding down the mouse after clicking on the datepicker,
     allowing the user to type into the input instead of the datepicker.
 
-    <img src="/static/images/datepicker.jpg" alt="datepicker-error">
+    <img src="/static/images/testing/datepicker.jpg" alt="datepicker-error">
     
     To prevent the user from being able to submit the form the following pattern was used:
 
@@ -135,7 +137,7 @@ It was also tested on several devices: Samsung Galaxy S10+, iPhone 12, Samsung T
     This means that the input was required to be in the format dd/mm/yyyy and checked for leap years and months that had either 28, 29, 30 or 31 days in that month.
 - The datapicker range doesn't allow the user to go past the current year but allows them to select any day of the current year as Date of Birth
     and accepts it on registration.
-    <img src="/static/images/date-regi.jpg" alt="date-range">
+    <img src="/static/images/testing/date-regi.jpg" alt="date-range">
 - Originally each favourite entry in the collection took the users _id and the comics name. This was changed to the user's username instead, as the _id wasn't able to compare with the user._id in jinja,
     causing the favourite button to not work.
 - Jinja2 loop controls had to be added to allow the use of continue and break, to allow some templating logic to work.
