@@ -56,7 +56,7 @@
             {% for comic in comics %}
             <!--No Mature filter-->
                 {% if session.mature == "no" %}
-                    <div class="col s12 m4">
+                    <div class="col l4 m6 s12">
                         <div class="card hoverable">
                             <!--Card Image-->
                             <div class="card-image">
@@ -132,7 +132,7 @@
                     </div>
                     <!--If mature filter is on then skips mature comics.-->
                     {% elif session.mature == "yes" and comic.is_mature == "no" %}
-                    <div class="col s12 m4">
+                    <div class="col l4 m6 s12">
                         <div class="card hoverable">
                             <div class="card-image">
                                 <a href="{{ url_for('more_info', entry_id=comic._id, comic_name=comic.comic_name|replace(' ', '_')) }}">
