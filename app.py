@@ -202,6 +202,9 @@ def delete_favourite():
 def profile(username):
     # Fetches users profile information.
     user = mongo.db.users.find_one({"username": username})
+    if user is None:
+        flash("Username: '{}' doesn't exist.".format(username))
+        return redirect(url_for("home"))
     return render_template("profile.html", user=user)
 
 
@@ -383,5 +386,5 @@ if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
-        debug=False
+        debug=True
     )
